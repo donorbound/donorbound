@@ -1,0 +1,25 @@
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: node_modules/.bin/commitlint --edit
+
+pre-commit:
+  commands:
+    biome-check:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: pnpm biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+      stage_fixed: true
+    eslint-check:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: pnpm eslint {staged_files} --fix
+      stage_fixed: true
+  parallel: true
+
+pre-push:
+  commands:
+    check:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: pnpm biome check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {push_files}
+    eslint-check:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: pnpm eslint {push_files}
