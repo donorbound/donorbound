@@ -1,11 +1,13 @@
-import { type Env, zEnv } from "~/pkgs/env";
+import { type Environment, zEnvironment } from "~/pkgs/environment";
 import { newApp } from "~/pkgs/hono/app";
 
 import { ConsoleLogger } from "@donorbound/worker-logging";
 import { cors } from "hono/cors";
 import { init } from "./pkgs/middlewares/analytics";
 import { metrics } from "./pkgs/middlewares/metrics";
-import { registerV1Liveness } from "./routes/v1_liveness";
+
+// routers
+import { registerV1Liveness } from "./routes/v1-liveness";
 
 /**
  * The Hono app
@@ -25,25 +27,29 @@ registerV1Liveness(app);
  * The worker handler
  */
 const handler = {
-  fetch: (req: Request, env: Env, executionCtx: ExecutionContext) => {
-    const parsedEnv = zEnv.safeParse(env);
-    if (!parsedEnv.success) {
+  fetch: (
+    request: Request,
+    environment: Environment,
+    executionContext: ExecutionContext,
+  ) => {
+    const parsedEnvironment = zEnvironment.safeParse(environment);
+    if (!parsedEnvironment.success) {
       new ConsoleLogger({
         requestId: "",
-        environment: env.ENVIRONMENT,
+        environment: environment.ENVIRONMENT,
         application: "api",
-      }).fatal(`BAD_ENVIRONMENT: ${parsedEnv.error.message}`);
+      }).fatal(`BAD_ENVIRONMENT: ${parsedEnvironment.error.message}`);
       return Response.json(
         {
           code: "BAD_ENVIRONMENT",
           message: "Some environment variables are missing or are invalid",
-          errors: parsedEnv.error,
+          errors: parsedEnvironment.error,
         },
         { status: 500 },
       );
     }
 
-    return app.fetch(req, parsedEnv.data, executionCtx);
+    return app.fetch(request, parsedEnvironment.data, executionContext);
   },
 };
 

@@ -7,7 +7,7 @@ export default defineConfig({
     reporters: ["html", "verbose"],
     outputFile: "./.vitest/html",
     alias: {
-      "~/": new URL("./src/", import.meta.url).pathname,
+      "~/": new URL("src/", import.meta.url).pathname,
     },
   },
 });

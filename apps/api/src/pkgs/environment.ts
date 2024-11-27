@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 export const cloudflareRatelimiter = z.custom<{
-  limit: (opts: { key: string }) => Promise<{ success: boolean }>;
+  limit: (options: { key: string }) => Promise<{ success: boolean }>;
 }>((r) => !!r && typeof r.limit === "function");
 
-export const zEnv = z.object({
+export const zEnvironment = z.object({
   VERSION: z.string().default("unknown"),
   DATABASE_HOST: z.string(),
   DATABASE_USERNAME: z.string(),
@@ -28,4 +28,4 @@ export const zEnv = z.object({
     }),
 });
 
-export type Env = z.infer<typeof zEnv>;
+export type Environment = z.infer<typeof zEnvironment>;

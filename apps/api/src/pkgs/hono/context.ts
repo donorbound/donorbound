@@ -1,5 +1,5 @@
 import type { Logger } from "@donorbound/worker-logging/types";
-import type { Env } from "~/pkgs/env";
+import type { Environment } from "~/pkgs/environment";
 import type { Metrics } from "../metrics/interface";
 // import type { Database } from "../db";
 
@@ -9,8 +9,8 @@ export type ServiceContext = {
   logger: Logger;
 };
 
-export type HonoEnv = {
-  Bindings: Env;
+export type HonoContext = {
+  Bindings: Environment;
   Variables: {
     isolateId: string;
     isolateCreatedAt: number;

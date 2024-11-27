@@ -1,10 +1,10 @@
 import type { Metric } from "@donorbound/metrics";
 import type { MiddlewareHandler } from "hono";
-import type { HonoEnv } from "../hono/env";
+import type { HonoContext } from "../hono/context";
 
 type DiscriminateMetric<T, M = Metric> = M extends { metric: T } ? M : never;
 
-export function metrics(): MiddlewareHandler<HonoEnv> {
+export function metrics(): MiddlewareHandler<HonoContext> {
   return async (c, next) => {
     const { metrics } = c.get("services");
 
@@ -27,14 +27,14 @@ export function metrics(): MiddlewareHandler<HonoEnv> {
 
     try {
       await next();
-    } catch (e) {
-      m.error = (e as Error).message;
+    } catch (error) {
+      m.error = (error as Error).message;
       c.get("services").logger.error("request", {
         method: c.req.method,
         path: c.req.path,
-        error: e,
+        error: error,
       });
-      throw e;
+      throw error;
     } finally {
       m.status = c.res.status;
       m.context = c.get("metricsContext") ?? {};

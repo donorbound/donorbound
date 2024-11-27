@@ -8,14 +8,14 @@ export class LogdrainMetrics implements Metrics {
   private readonly isolateId: string | undefined;
   private readonly environment: LogSchema["environment"];
 
-  constructor(opts: {
+  constructor(options: {
     requestId: string;
     isolateId: string | undefined;
     environment: LogSchema["environment"];
   }) {
-    this.requestId = opts.requestId;
-    this.isolateId = opts.isolateId;
-    this.environment = opts.environment;
+    this.requestId = options.requestId;
+    this.isolateId = options.isolateId;
+    this.environment = options.environment;
   }
 
   public emit(metric: Metric): void {
@@ -33,6 +33,6 @@ export class LogdrainMetrics implements Metrics {
   }
 
   public async flush(): Promise<void> {
-    return Promise.resolve();
+    return;
   }
 }
