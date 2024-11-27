@@ -1,0 +1,26 @@
+name = "api"
+main = "src/worker.ts"
+compatibility_date = "2024-01-01"
+
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = false
+
+## these are in local dev
+
+[[migrations]]
+tag = "v1"
+new_classes = ["DurableObjectRatelimiter"]
+
+[[migrations]]
+tag = "v2"
+new_classes = ["DurableObjectUsagelimiter"]
+
+[[migrations]]
+tag = "v3"
+deleted_classes = ["DurableObjectRatelimiter"]
+
+[env.development]
+route = { pattern = "development-api.donorbound.com", custom_domain = true }
+vars = { ENVIRONMENT = "development" }

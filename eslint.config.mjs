@@ -7,14 +7,24 @@ import tseslint from "typescript-eslint";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-	{ files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
-	{ languageOptions: { globals: globals.browser } },
-	pluginJs.configs.recommended,
-	...tseslint.configs.recommended,
-	// {
-	// 	files: ["/apps/www/**/*.{js,jsx,ts,tsx}"],
-	// 	...pluginReact.configs.flat.recommended,
-	// ...tailwind.configs["flat/recommended"]
-	// },
-	biome,
+  {
+    ignores: [
+      "**/.next/**",
+      "**/.source/**",
+      "**/.vitest/**",
+      "**/.wrangler/**",
+      "**/dist/**",
+      "**/node_modules/**",
+    ],
+  },
+  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
+  { languageOptions: { globals: globals.browser } },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  // {
+  // 	files: ["/apps/www/**/*.{js,jsx,ts,tsx}"],
+  // 	...pluginReact.configs.flat.recommended,
+  // ...tailwind.configs["flat/recommended"]
+  // },
+  biome,
 ];

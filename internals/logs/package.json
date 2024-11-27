@@ -1,0 +1,27 @@
+{
+  "name": "@donorbound/logs",
+  "version": "0.0.1",
+  "description": "",
+  "exports": {
+    ".": {
+      "import": "./src/logs.ts",
+      "require": "./src/logs.ts",
+      "types": "./src/logs.ts"
+    },
+    "./types": {
+      "import": "./src/types.ts",
+      "require": "./src/types.ts",
+      "types": "./src/types.ts"
+    }
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@donorbound/tsconfig": "workspace:*",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@donorbound/metrics": "workspace:^",
+    "zod": "^3.23.8"
+  }
+}

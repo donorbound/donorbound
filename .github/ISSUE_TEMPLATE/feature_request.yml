@@ -9,7 +9,7 @@ body:
       value: |
         ## Welcome 👋🏻
 
-        Thank you for taking the time to write up a feature request. Please fill out the information below to be able to help you faster. If you have a question or need general help, please join our [Discord community](https://unkey.com/discord).
+        Thank you for taking the time to write up a feature request. Please fill out the information below to be able to help you faster. If you have a question or need general help, please join our [Discord community](https://donorbound.com/discord).
   - type: checkboxes
     attributes:
       label: Preliminary Checks
@@ -22,7 +22,7 @@ body:
             I have searched for existing feature requests: https://github.com/donorbound/donorbound/issues
           required: true
         - label: |
-            This issue is not a question, general help request, or anything other than a feature request directly related to Unkey. Please ask questions in our Discord community: https://unkey.com/discord.
+            This issue is not a question, general help request, or anything other than a feature request directly related to Donorbound. Please ask questions in our Discord community: https://donorbound.com/discord.
           required: true
   - type: textarea
     id: problem-description

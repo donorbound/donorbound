@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.prose {
+  /* --tw-prose-body: hsl(var(--muted-foreground)); */
+}

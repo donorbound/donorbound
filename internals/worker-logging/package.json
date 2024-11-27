@@ -1,0 +1,24 @@
+{
+  "name": "@donorbound/worker-logging",
+  "version": "1.0.0",
+  "description": "",
+  "exports": {
+    ".": {
+      "import": "./src/console.ts",
+      "require": "./src/console.ts",
+      "types": "./src/console.ts"
+    },
+    "./types": {
+      "import": "./src/types.ts",
+      "require": "./src/types.ts",
+      "types": "./src/types.ts"
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@donorbound/tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "@donorbound/logs": "workspace:^"
+  }
+}
