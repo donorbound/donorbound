@@ -2,9 +2,14 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 import { apiReference } from "@scalar/hono-api-reference";
 import type { Context as GenericContext } from "hono";
 import { prettyJSON } from "hono/pretty-json";
-import { handleError, handleZodError } from "~/pkgs/errors/http";
+
+import { handleError, handleZodError } from "../errors/error-handlers";
 import type { HonoContext } from "./context";
 
+/**
+ * Initializes and configures a new OpenAPIHono application.
+ * @returns {OpenAPIHono<HonoContext>} The configured Hono application instance.
+ */
 export function newApp() {
   const app = new OpenAPIHono<HonoContext>({
     defaultHook: handleZodError,
@@ -21,7 +26,7 @@ export function newApp() {
         c.req.header("CF-Connecting-IP") ??
         c.req.raw?.cf?.colo ??
         "unknown"
-      ).toString(), // Ensure the value is a string
+      ).toString(),
     );
     c.set("userAgent", c.req.header("User-Agent"));
 
@@ -75,4 +80,4 @@ export function newApp() {
 }
 
 export type App = ReturnType<typeof newApp>;
-export type Context = GenericContext<HonoEnvironment>;
+export type Context = GenericContext<HonoContext>;

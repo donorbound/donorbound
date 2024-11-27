@@ -14,11 +14,14 @@
       "types": "./src/types.ts"
     }
   },
-  "devDependencies": {
-    "typescript": "^5.7.2",
-    "@donorbound/tsconfig": "workspace:*"
+  "scripts": {
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@donorbound/logs": "workspace:^"
+  },
+  "devDependencies": {
+    "@donorbound/tsconfig": "workspace:*",
+    "typescript": "^5.7.2"
   }
 }

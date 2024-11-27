@@ -35,10 +35,21 @@ const route = createRoute({
   },
 });
 
+/**
+ * Type representing the response for the v1 liveness endpoint.
+ * @typedef {z.infer<(typeof route.responses)[200]["content"]["application/json"]["schema"]>} V1LivenessResponse
+ */
 export type V1LivenessResponse = z.infer<
   (typeof route.responses)[200]["content"]["application/json"]["schema"]
 >;
 
+/**
+ * Registers the v1 liveness route with the given app.
+ *
+ * This route provides the status of the server and the names of the connected services.
+ *
+ * @param {App} app - The Hono app instance to register the route with.
+ */
 export const registerV1Liveness = (app: App) =>
   app.openapi(route, async (c) => {
     const { logger, metrics } = c.get("services");

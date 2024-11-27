@@ -1,6 +1,8 @@
 {
   "name": "@donorbound/error",
   "version": "0.0.1",
+  "description": "",
+  "keywords": [],
   "exports": {
     ".": {
       "import": "./src/error-handling.ts",
@@ -28,18 +30,16 @@
       "types": "./src/errors/schema-error.ts"
     }
   },
-  "description": "",
-  "keywords": [],
   "scripts": {
-    "build": "tsup"
-  },
-  "devDependencies": {
-    "@types/node": "^22.10.0",
-    "tsx": "^4.19.2",
-    "@donorbound/tsconfig": "workspace:*",
-    "typescript": "^5.7.2"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@donorbound/tsconfig": "workspace:*",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
   }
 }

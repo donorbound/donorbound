@@ -4,6 +4,10 @@ import type { HonoContext } from "../hono/context";
 
 type DiscriminateMetric<T, M = Metric> = M extends { metric: T } ? M : never;
 
+/**
+ * Middleware to collect and emit metrics for HTTP requests.
+ * @returns {MiddlewareHandler<HonoContext>} The middleware handler function.
+ */
 export function metrics(): MiddlewareHandler<HonoContext> {
   return async (c, next) => {
     const { metrics } = c.get("services");

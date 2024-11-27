@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+/**
+ * Schema for different types of metrics, discriminated by the "metric" field.
+ * @type {z.ZodUnion}
+ */
 export const metricSchema = z.discriminatedUnion("metric", [
   z.object({
     metric: z.literal("metric.http.request"),
@@ -7,14 +11,20 @@ export const metricSchema = z.discriminatedUnion("metric", [
     path: z.string(),
     method: z.string(),
     status: z.number(),
-    // ms since worker initilized for the first time
-    // a non zero value means the worker is reused
+    /**
+     * Milliseconds since the worker was initialized for the first time.
+     * A non-zero value indicates the worker is reused.
+     * @type {number | undefined}
+     */
     isolateLifetime: z.number().optional(),
     isolateId: z.string().optional(),
     error: z.string().optional(),
     coldStart: z.boolean().optional(),
     serviceLatency: z.number(),
-    // Regional data might be different on non-cloudflare deployments
+    /**
+     * Regional data might differ on non-Cloudflare deployments.
+     * @type {string | undefined}
+     */
     colo: z.string().optional(),
     continent: z.string().optional(),
     country: z.string().optional(),
@@ -43,4 +53,8 @@ export const metricSchema = z.discriminatedUnion("metric", [
   }),
 ]);
 
+/**
+ * Type representing the inferred schema of a metric.
+ * @typedef {z.infer<typeof metricSchema>} Metric
+ */
 export type Metric = z.infer<typeof metricSchema>;

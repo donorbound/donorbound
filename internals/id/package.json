@@ -2,6 +2,7 @@
   "name": "@donorbound/id",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
   "exports": {
     ".": {
       "import": "./src/generate.ts",
@@ -9,17 +10,17 @@
       "types": "./src/generate9ooio.ts"
     }
   },
-  "keywords": [],
   "scripts": {
-    "test": "vitest run -c ./vitest.config.ts"
-  },
-  "devDependencies": {
-    "@types/node": "^22.10.0",
-    "@donorbound/tsconfig": "workspace:*",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.6"
+    "test": "vitest run -c ./vitest.config.ts",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "base-x": "^5.0.0"
+  },
+  "devDependencies": {
+    "@donorbound/tsconfig": "workspace:*",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.6"
   }
 }

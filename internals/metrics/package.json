@@ -2,6 +2,7 @@
   "name": "@donorbound/metrics",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
   "exports": {
     ".": {
       "import": "./src/metrics.ts",
@@ -9,13 +10,15 @@
       "types": "./src/metrics.ts"
     }
   },
-  "keywords": [],
-  "devDependencies": {
-    "@types/node": "^22.10.0",
-    "@donorbound/tsconfig": "workspace:*",
-    "typescript": "^5.7.2"
+  "scripts": {
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@donorbound/tsconfig": "workspace:*",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
   }
 }

@@ -20,13 +20,29 @@ app.use("*", metrics());
 /**
  * Registering all route handlers
  */
-
 registerV1Liveness(app);
 
 /**
  * The worker handler
+ *
+ * This object serves as the entry point for the application, handling all incoming requests.
+ * It validates the environment configuration and delegates request processing to the Hono app.
+ *
+ * @type {Object}
+ * @property {Function} fetch - Handles incoming requests and returns a response.
  */
 const handler = {
+  /**
+   * Handles incoming requests and returns a response.
+   *
+   * This method is the main entry point for processing HTTP requests. It ensures that the
+   * environment variables are correctly configured before passing the request to the Hono app.
+   *
+   * @param {Request} request - The incoming request object.
+   * @param {Environment} environment - The environment variables.
+   * @param {ExecutionContext} executionContext - The execution context.
+   * @returns {Promise<Response>} The response to the request.
+   */
   fetch: (
     request: Request,
     environment: Environment,

@@ -2,16 +2,15 @@
   "name": "donorbound",
   "private": true,
   "description": "The open source fundraising platform nonprofits build on",
+  "keywords": [],
+  "license": "GPL-3.0-only",
+  "author": "Christopher Burns <christopher@donorbound.com>",
   "scripts": {
-    "fmt:check": "biome check . && eslint .",
-    "fmt": "biome check --write --unsafe . && eslint --fix .",
     "commit": "cz",
+    "fmt": "biome check --write --unsafe . && eslint --fix .",
+    "fmt:check": "biome check . && eslint .",
     "knip": "knip --include files,dependencies"
   },
-  "keywords": [],
-  "author": "Christopher Burns <christopher@donorbound.com>",
-  "license": "GPL-3.0-only",
-  "packageManager": "pnpm@9.1.4",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "^19.6.0",
@@ -29,5 +28,6 @@
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.16.0",
     "vitest": "^2.1.6"
-  }
+  },
+  "packageManager": "pnpm@9.1.4"
 }

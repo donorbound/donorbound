@@ -17,10 +17,11 @@ import { NoopMetrics } from "../metrics/noop";
  */
 let isolateId: string | undefined;
 let isolateCreatedAt: number | undefined;
+
 /**
- * Initialize all services.
- *
- * Call this once before any hono handlers run.
+ * Initializes all services and sets up middleware for request handling.
+ * This function should be called once before any Hono handlers run.
+ * @returns {MiddlewareHandler<HonoContext>} The middleware handler function.
  */
 export function init(): MiddlewareHandler<HonoContext> {
   return async (c, next) => {
@@ -45,28 +46,6 @@ export function init(): MiddlewareHandler<HonoContext> {
       environment: c.env.ENVIRONMENT,
       defaultFields: { environment: c.env.ENVIRONMENT },
     });
-    // const primary = createConnection({
-    //   host: c.env.DATABASE_HOST,
-    //   username: c.env.DATABASE_USERNAME,
-    //   password: c.env.DATABASE_PASSWORD,
-    //   retry: 3,
-    //   logger,
-    // });
-
-    // const readonly =
-    //   c.env.DATABASE_HOST_READONLY &&
-    //   c.env.DATABASE_USERNAME_READONLY &&
-    //   c.env.DATABASE_PASSWORD_READONLY
-    //     ? createConnection({
-    //         host: c.env.DATABASE_HOST_READONLY,
-    //         username: c.env.DATABASE_USERNAME_READONLY,
-    //         password: c.env.DATABASE_PASSWORD_READONLY,
-    //         retry: 3,
-    //         logger,
-    //       })
-    //     : primary;
-
-    // const db = { primary, readonly };
 
     const metrics: Metrics = c.env.EMIT_METRICS_LOGS
       ? new LogdrainMetrics({
@@ -77,7 +56,6 @@ export function init(): MiddlewareHandler<HonoContext> {
       : new NoopMetrics();
 
     c.set("services", {
-      //   db,
       metrics,
       logger,
     });

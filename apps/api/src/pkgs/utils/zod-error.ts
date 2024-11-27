@@ -1,5 +1,10 @@
 import type { z } from "zod";
 
+/**
+ * Parses a ZodError to extract a human-readable error message.
+ * @param {z.ZodError} error - The ZodError instance to parse.
+ * @returns {string} A string representation of the first error message and its path.
+ */
 export function parseZodErrorMessage(error: z.ZodError): string {
   try {
     const array = JSON.parse(error.message) as Array<{
