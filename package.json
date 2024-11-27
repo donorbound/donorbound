@@ -6,6 +6,8 @@
   "license": "GPL-3.0-only",
   "author": "Christopher Burns <christopher@donorbound.com>",
   "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
     "commit": "cz",
     "fmt": "biome check --write --unsafe . && eslint --fix .",
     "fmt:check": "biome check . && eslint .",
