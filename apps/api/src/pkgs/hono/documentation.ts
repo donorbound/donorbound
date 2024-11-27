@@ -4,6 +4,7 @@ import { apiReference } from "@scalar/hono-api-reference";
 
 import type { HonoContext } from "./context";
 
+import packageJSON from "../../../package.json";
 /**
  * Sets up OpenAPI documentation for the app.
  * @param {OpenAPIHono} app - The app instance.
@@ -12,7 +13,7 @@ export function setupDocumentation(app: OpenAPIHono<HonoContext>) {
   app.doc("/openapi.json", {
     info: {
       title: "Donorbound API",
-      version: "1.0.0",
+      version: packageJSON.version,
     },
     openapi: "3.0.0",
     servers: [
@@ -48,10 +49,14 @@ export function setupDocumentation(app: OpenAPIHono<HonoContext>) {
   app.get(
     "/reference",
     apiReference({
+      defaultHttpClient: {
+        clientKey: "fetch",
+        targetKey: "javascript",
+      },
       spec: {
         url: "/openapi.json",
       },
-      theme: "bluePlanet",
+      theme: "kepler",
     }),
   );
 }
