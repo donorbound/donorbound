@@ -1,5 +1,6 @@
 import type { Metric } from "@donorbound/metrics";
 import type { MiddlewareHandler } from "hono";
+
 import type { HonoContext } from "../hono/context";
 
 type DiscriminateMetric<T, M = Metric> = M extends { metric: T } ? M : never;
@@ -14,19 +15,19 @@ export function metrics(): MiddlewareHandler<HonoContext> {
 
     const start = performance.now();
     const m = {
-      isolateId: c.get("isolateId"),
-      isolateLifetime: Date.now() - c.get("isolateCreatedAt"),
-      metric: "metric.http.request",
-      path: c.req.path,
-      host: new URL(c.req.url).host,
-      method: c.req.method,
+      city: c.req.raw?.cf?.city,
+      colo: c.req.raw?.cf?.colo,
+      context: {},
       continent: c.req.raw?.cf?.continent,
       country: c.req.raw?.cf?.country,
-      colo: c.req.raw?.cf?.colo,
-      city: c.req.raw?.cf?.city,
-      userAgent: c.req.header("user-agent"),
       fromAgent: c.req.header("Donorbound-Redirect"),
-      context: {},
+      host: new URL(c.req.url).host,
+      isolateId: c.get("isolateId"),
+      isolateLifetime: Date.now() - c.get("isolateCreatedAt"),
+      method: c.req.method,
+      metric: "metric.http.request",
+      path: c.req.path,
+      userAgent: c.req.header("user-agent"),
     } as DiscriminateMetric<"metric.http.request">;
 
     try {
@@ -34,9 +35,9 @@ export function metrics(): MiddlewareHandler<HonoContext> {
     } catch (error) {
       m.error = (error as Error).message;
       c.get("services").logger.error("request", {
+        error: error,
         method: c.req.method,
         path: c.req.path,
-        error: error,
       });
       throw error;
     } finally {

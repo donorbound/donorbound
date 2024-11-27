@@ -12,7 +12,7 @@ rimrafSync(out, {
 
 void OpenAPI.generateFiles({
   // input files
+  groupBy: "tag",
   input: ["./openapi.json"],
   output: out,
-  groupBy: "tag",
 });

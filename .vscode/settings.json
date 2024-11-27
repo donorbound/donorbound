@@ -3,11 +3,13 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports.biome": "explicit",
     "quickfix.biome": "explicit"
   },
   "editor.defaultFormatter": "biomejs.biome",
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }

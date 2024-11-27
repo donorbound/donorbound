@@ -11,20 +11,16 @@ export const cloudflareRatelimiter = z.custom<{
  * Zod schema for validating environment variables.
  */
 export const zEnvironment = z.object({
-  VERSION: z.string().default("unknown"),
-  DATABASE_HOST: z.string(),
-  DATABASE_USERNAME: z.string(),
-  DATABASE_PASSWORD: z.string(),
-  DATABASE_NAME: z.string().default("donorbound"),
-  DATABASE_HOST_READONLY: z.string().optional(),
-  DATABASE_USERNAME_READONLY: z.string().optional(),
-  DATABASE_PASSWORD_READONLY: z.string().optional(),
   AXIOM_TOKEN: z.string().optional(),
   CLOUDFLARE_API_KEY: z.string().optional(),
   CLOUDFLARE_ZONE_ID: z.string().optional(),
-  ENVIRONMENT: z
-    .enum(["development", "preview", "canary", "production"])
-    .default("development"),
+  DATABASE_HOST: z.string(),
+  DATABASE_HOST_READONLY: z.string().optional(),
+  DATABASE_NAME: z.string().default("donorbound"),
+  DATABASE_PASSWORD: z.string(),
+  DATABASE_PASSWORD_READONLY: z.string().optional(),
+  DATABASE_USERNAME: z.string(),
+  DATABASE_USERNAME_READONLY: z.string().optional(),
   EMIT_METRICS_LOGS: z
     .string()
     .optional()
@@ -32,6 +28,10 @@ export const zEnvironment = z.object({
     .transform((v) => {
       return v === "true";
     }),
+  ENVIRONMENT: z
+    .enum(["development", "preview", "canary", "production"])
+    .default("development"),
+  VERSION: z.string().default("unknown"),
 });
 
 /**

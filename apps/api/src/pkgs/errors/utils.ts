@@ -1,5 +1,6 @@
 import type { z } from "@hono/zod-openapi";
 import type { StatusCode } from "hono/utils/http-status";
+
 import type { ErrorCode } from "./error-codes";
 
 /**

@@ -1,5 +1,6 @@
 import { metricSchema } from "@donorbound/metrics";
 import { z } from "zod";
+
 import type { LogSchema } from "./types";
 
 /**
@@ -15,6 +16,7 @@ export const logContext = z.object({
  * @type {z.ZodObject}
  */
 const commonFields = z.object({
+  application: z.enum(["api"]),
   environment: z.enum([
     "test",
     "development",
@@ -23,7 +25,6 @@ const commonFields = z.object({
     "production",
     "unknown",
   ]),
-  application: z.enum(["api"]),
   isolateId: z.string().optional(),
   requestId: z.string(),
   time: z.number(),
@@ -36,16 +37,16 @@ const commonFields = z.object({
 export const logSchema = z.discriminatedUnion("type", [
   commonFields.merge(
     z.object({
-      type: z.literal("log"),
+      context: z.record(z.any()),
       level: z.enum(["debug", "info", "warn", "error", "fatal"]),
       message: z.string(),
-      context: z.record(z.any()),
+      type: z.literal("log"),
     }),
   ),
   commonFields.merge(
     z.object({
-      type: z.literal("metric"),
       metric: metricSchema,
+      type: z.literal("metric"),
     }),
   ),
 ]);

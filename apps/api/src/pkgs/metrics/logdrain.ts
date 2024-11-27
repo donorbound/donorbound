@@ -1,6 +1,8 @@
-import { Log } from "@donorbound/logs";
 import type { LogSchema } from "@donorbound/logs/types";
 import type { Metric } from "@donorbound/metrics";
+
+import { Log } from "@donorbound/logs";
+
 import type { Metrics } from "./interface";
 
 /**
@@ -34,13 +36,13 @@ export class LogdrainMetrics implements Metrics {
    */
   public emit(metric: Metric): void {
     const log = new Log({
-      requestId: this.requestId,
-      isolateId: this.isolateId,
-      environment: this.environment,
       application: "api",
-      type: "metric",
-      time: Date.now(),
+      environment: this.environment,
+      isolateId: this.isolateId,
       metric,
+      requestId: this.requestId,
+      time: Date.now(),
+      type: "metric",
     });
 
     console.info(log.toString());

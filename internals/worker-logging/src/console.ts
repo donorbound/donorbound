@@ -1,5 +1,7 @@
-import { Log } from "@donorbound/logs";
 import type { LogSchema } from "@donorbound/logs/types";
+
+import { Log } from "@donorbound/logs";
+
 import type { Fields, Logger } from "./types";
 
 /**
@@ -45,14 +47,14 @@ export class ConsoleLogger implements Logger {
     fields?: Fields,
   ): string {
     return new Log({
-      type: "log",
-      environment: this.environment,
       application: this.application,
-      requestId: this.requestId,
-      time: Date.now(),
+      context: { ...this.defaultFields, ...fields },
+      environment: this.environment,
       level,
       message,
-      context: { ...this.defaultFields, ...fields },
+      requestId: this.requestId,
+      time: Date.now(),
+      type: "log",
     }).toString();
   }
 

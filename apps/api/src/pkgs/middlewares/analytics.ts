@@ -1,11 +1,11 @@
-import { ConsoleLogger } from "@donorbound/worker-logging";
-
-import { newId } from "@donorbound/id";
 import type { MiddlewareHandler } from "hono";
 
-import type { HonoContext } from "../hono/context";
+import { newId } from "@donorbound/id";
+import { ConsoleLogger } from "@donorbound/worker-logging";
 
+import type { HonoContext } from "../hono/context";
 import type { Metrics } from "../metrics/interface";
+
 import { LogdrainMetrics } from "../metrics/logdrain";
 import { NoopMetrics } from "../metrics/noop";
 
@@ -41,23 +41,23 @@ export function init(): MiddlewareHandler<HonoContext> {
     c.res.headers.set("Donorbound-Request-Id", requestId);
 
     const logger = new ConsoleLogger({
-      requestId,
       application: "api",
-      environment: c.env.ENVIRONMENT,
       defaultFields: { environment: c.env.ENVIRONMENT },
+      environment: c.env.ENVIRONMENT,
+      requestId,
     });
 
     const metrics: Metrics = c.env.EMIT_METRICS_LOGS
       ? new LogdrainMetrics({
-          requestId,
           environment: c.env.ENVIRONMENT,
           isolateId,
+          requestId,
         })
       : new NoopMetrics();
 
     c.set("services", {
-      metrics,
       logger,
+      metrics,
     });
 
     await next();

@@ -1,21 +1,14 @@
-import { type Environment, zEnvironment } from "~/pkgs/environment";
-import { newApp } from "~/pkgs/hono/app";
-
 import { ConsoleLogger } from "@donorbound/worker-logging";
-import { cors } from "hono/cors";
-import { init } from "./pkgs/middlewares/analytics";
-import { metrics } from "./pkgs/middlewares/metrics";
 
-// routers
+import { type Environment, zEnvironment } from "~/pkgs/environment";
+import { createHonoApp } from "~/pkgs/hono/create-hono-app";
+
 import { registerV1Liveness } from "./routes/v1-liveness";
 
 /**
  * The Hono app
  */
-const app = newApp();
-app.use("*", init());
-app.use("*", cors());
-app.use("*", metrics());
+const app = createHonoApp();
 
 /**
  * Registering all route handlers
@@ -51,15 +44,15 @@ const handler = {
     const parsedEnvironment = zEnvironment.safeParse(environment);
     if (!parsedEnvironment.success) {
       new ConsoleLogger({
-        requestId: "",
-        environment: environment.ENVIRONMENT,
         application: "api",
+        environment: environment.ENVIRONMENT,
+        requestId: "",
       }).fatal(`BAD_ENVIRONMENT: ${parsedEnvironment.error.message}`);
       return Response.json(
         {
           code: "BAD_ENVIRONMENT",
-          message: "Some environment variables are missing or are invalid",
           errors: parsedEnvironment.error,
+          message: "Some environment variables are missing or are invalid",
         },
         { status: 500 },
       );

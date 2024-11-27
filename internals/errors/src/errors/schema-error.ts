@@ -1,4 +1,5 @@
 import type { ZodError } from "zod";
+
 import { BaseError } from "./base";
 
 /**
@@ -51,11 +52,11 @@ export class SchemaError extends BaseError<{ raw: unknown }> {
     context?: Record<string, unknown>,
   ): SchemaError {
     return new SchemaError({
-      message: error.message,
       context: {
         raw: JSON.stringify(raw),
         ...context,
       },
+      message: error.message,
     });
   }
 }

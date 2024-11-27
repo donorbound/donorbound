@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Metric } from "@donorbound/metrics";
+
 import type { Metrics } from "./interface";
 
 /**

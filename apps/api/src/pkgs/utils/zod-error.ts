@@ -12,7 +12,7 @@ export function parseZodErrorMessage(error: z.ZodError): string {
       path: Array<string>;
     }>;
     if (array[0]) {
-      const { path, message } = array[0];
+      const { message, path } = array[0];
       return `${path.join(".")}: ${message}`;
     }
     return error.message;

@@ -1,11 +1,16 @@
 import type { Context } from "hono";
-import { HTTPException } from "hono/http-exception";
 import type { ZodError, z } from "zod";
+
+import { HTTPException } from "hono/http-exception";
+
 import type { HonoContext } from "~/pkgs/hono/context";
+
 import { parseZodErrorMessage } from "~/pkgs/utils/zod-error";
-import { DonorboundApiError } from "./donorbound-api-error";
+
 import type { ErrorCode } from "./error-codes";
 import type { ErrorResponse } from "./error-schema";
+
+import { DonorboundApiError } from "./donorbound-api-error";
 import { codeToStatus, statusToCode } from "./utils";
 
 /**
@@ -48,9 +53,9 @@ export function handleError(error: Error, c: Context<HonoContext>): Response {
   if (error instanceof DonorboundApiError) {
     if (error.status >= 500) {
       logger.error("returning 5XX", {
+        code: error.code,
         message: error.message,
         name: error.name,
-        code: error.code,
         status: error.status,
       });
     }
@@ -71,8 +76,8 @@ export function handleError(error: Error, c: Context<HonoContext>): Response {
     if (error.status >= 500) {
       logger.error("HTTPException", {
         message: error.message,
-        status: error.status,
         requestId: c.get("requestId"),
+        status: error.status,
       });
     }
     const code = statusToCode(error.status);
@@ -90,11 +95,11 @@ export function handleError(error: Error, c: Context<HonoContext>): Response {
   }
 
   logger.error("unhandled exception", {
-    name: error.name,
-    message: error.message,
     cause: error.cause,
-    stack: error.stack,
+    message: error.message,
+    name: error.name,
     requestId: c.get("requestId"),
+    stack: error.stack,
   });
   return c.json<ErrorResponse>(
     {
