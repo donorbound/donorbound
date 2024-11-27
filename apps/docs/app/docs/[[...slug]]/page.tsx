@@ -9,11 +9,11 @@ import {
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 
-export default async function Page(props: {
+export default async function Page(properties: {
   params: Promise<{ slug?: string[] }>;
 }) {
-  const params = await props.params;
-  const page = source.getPage(params.slug);
+  const parameters = await properties.params;
+  const page = source.getPage(parameters.slug);
 
   if (!page) {
     notFound();
@@ -41,11 +41,11 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata(props: {
+export async function generateMetadata(properties: {
   params: Promise<{ slug?: string[] }>;
 }) {
-  const params = await props.params;
-  const page = source.getPage(params.slug);
+  const parameters = await properties.params;
+  const page = source.getPage(parameters.slug);
 
   if (!page) notFound();
 

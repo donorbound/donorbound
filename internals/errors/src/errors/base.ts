@@ -8,14 +8,14 @@ export abstract class BaseError<
   public readonly context: TContext | undefined;
   public abstract readonly name: string;
 
-  constructor(opts: {
+  constructor(options: {
     message: string;
     cause?: BaseError;
     context?: TContext;
   }) {
-    super(opts.message);
-    this.cause = opts.cause;
-    this.context = opts.context;
+    super(options.message);
+    this.cause = options.cause;
+    this.context = options.context;
   }
 
   public toString(): string {

@@ -3,7 +3,7 @@ import { ConsoleLogger } from "@donorbound/worker-logging";
 import { newId } from "@donorbound/id";
 import type { MiddlewareHandler } from "hono";
 
-import type { HonoEnv } from "../hono/env";
+import type { HonoContext } from "../hono/context";
 
 import type { Metrics } from "../metrics/interface";
 import { LogdrainMetrics } from "../metrics/logdrain";
@@ -15,14 +15,14 @@ import { NoopMetrics } from "../metrics/noop";
  *
  * subsequent requests will use the same workerId and coldStartAt
  */
-let isolateId: string | undefined = undefined;
-let isolateCreatedAt: number | undefined = undefined;
+let isolateId: string | undefined;
+let isolateCreatedAt: number | undefined;
 /**
  * Initialize all services.
  *
  * Call this once before any hono handlers run.
  */
-export function init(): MiddlewareHandler<HonoEnv> {
+export function init(): MiddlewareHandler<HonoContext> {
   return async (c, next) => {
     if (!isolateId) {
       isolateId = crypto.randomUUID();

@@ -3,10 +3,10 @@ import { apiReference } from "@scalar/hono-api-reference";
 import type { Context as GenericContext } from "hono";
 import { prettyJSON } from "hono/pretty-json";
 import { handleError, handleZodError } from "~/pkgs/errors/http";
-import type { HonoEnv } from "./env";
+import type { HonoContext } from "./context";
 
 export function newApp() {
-  const app = new OpenAPIHono<HonoEnv>({
+  const app = new OpenAPIHono<HonoContext>({
     defaultHook: handleZodError,
   });
 
@@ -46,7 +46,7 @@ export function newApp() {
       strategy: "backoff",
       backoff: {
         initialInterval: 50, // 50ms
-        maxInterval: 1_000, // 1s
+        maxInterval: 1000, // 1s
         maxElapsedTime: 30_000, // 30s
         exponent: 1.5,
       },
@@ -75,4 +75,4 @@ export function newApp() {
 }
 
 export type App = ReturnType<typeof newApp>;
-export type Context = GenericContext<HonoEnv>;
+export type Context = GenericContext<HonoEnvironment>;

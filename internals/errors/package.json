@@ -12,10 +12,10 @@
       "require": "./src/errors/base.ts",
       "types": "./src/errors/base.ts"
     },
-    "./env-error": {
-      "import": "./src/errors/env-error.ts",
-      "require": "./src/errors/env-error.ts",
-      "types": "./src/errors/env-error.ts"
+    "./environment-error": {
+      "import": "./src/errors/environment-error.ts",
+      "require": "./src/errors/environment-error.ts",
+      "types": "./src/errors/environment-error.ts"
     },
     "./fetch-error": {
       "import": "./src/errors/fetch-error.ts",

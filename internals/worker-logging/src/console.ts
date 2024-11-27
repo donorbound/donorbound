@@ -8,16 +8,16 @@ export class ConsoleLogger implements Logger {
   private readonly application: LogSchema["application"];
   private readonly defaultFields: Fields;
 
-  constructor(opts: {
+  constructor(options: {
     requestId: string;
     environment: LogSchema["environment"];
     application: LogSchema["application"];
     defaultFields?: Fields;
   }) {
-    this.requestId = opts.requestId;
-    this.environment = opts.environment;
-    this.application = opts.application;
-    this.defaultFields = opts.defaultFields ?? {};
+    this.requestId = options.requestId;
+    this.environment = options.environment;
+    this.application = options.application;
+    this.defaultFields = options.defaultFields ?? {};
   }
 
   private marshal(

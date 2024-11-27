@@ -11,7 +11,7 @@ export class FetchError extends BaseError<{
   public readonly retry: boolean;
   public readonly name = FetchError.name;
 
-  constructor(opts: {
+  constructor(options: {
     message: string;
 
     retry: boolean;
@@ -22,7 +22,7 @@ export class FetchError extends BaseError<{
       [more: string]: unknown;
     };
   }) {
-    super(opts);
-    this.retry = opts.retry;
+    super(options);
+    this.retry = options.retry;
   }
 }

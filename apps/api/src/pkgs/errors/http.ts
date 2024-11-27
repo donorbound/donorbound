@@ -3,7 +3,7 @@ import type { Context } from "hono";
 import { HTTPException } from "hono/http-exception";
 import type { StatusCode } from "hono/utils/http-status";
 import type { ZodError } from "zod";
-import type { HonoEnv } from "~/pkgs/hono/env";
+import type { HonoEnv } from "~/pkgs/hono/context";
 import { parseZodErrorMessage } from "~/pkgs/utils/zod-error";
 
 const ErrorCode = z.enum([
@@ -72,49 +72,64 @@ export type ErrorResponse = z.infer<typeof ErrorSchema>;
 
 function codeToStatus(code: z.infer<typeof ErrorCode>): StatusCode {
   switch (code) {
-    case "BAD_REQUEST":
+    case "BAD_REQUEST": {
       return 400;
+    }
     case "FORBIDDEN":
     case "DISABLED":
     case "UNAUTHORIZED":
     case "INSUFFICIENT_PERMISSIONS":
     case "USAGE_EXCEEDED":
-    case "EXPIRED":
+    case "EXPIRED": {
       return 403;
-    case "NOT_FOUND":
+    }
+    case "NOT_FOUND": {
       return 404;
-    case "METHOD_NOT_ALLOWED":
+    }
+    case "METHOD_NOT_ALLOWED": {
       return 405;
-    case "NOT_UNIQUE":
+    }
+    case "NOT_UNIQUE": {
       return 409;
+    }
     case "DELETE_PROTECTED":
-    case "PRECONDITION_FAILED":
+    case "PRECONDITION_FAILED": {
       return 412;
-    case "RATE_LIMITED":
+    }
+    case "RATE_LIMITED": {
       return 429;
-    case "INTERNAL_SERVER_ERROR":
+    }
+    case "INTERNAL_SERVER_ERROR": {
       return 500;
+    }
   }
 }
 
 function statusToCode(status: StatusCode): z.infer<typeof ErrorCode> {
   switch (status) {
-    case 400:
+    case 400: {
       return "BAD_REQUEST";
-    case 401:
+    }
+    case 401: {
       return "UNAUTHORIZED";
-    case 403:
+    }
+    case 403: {
       return "FORBIDDEN";
+    }
 
-    case 404:
+    case 404: {
       return "NOT_FOUND";
+    }
 
-    case 405:
+    case 405: {
       return "METHOD_NOT_ALLOWED";
-    case 500:
+    }
+    case 500: {
       return "INTERNAL_SERVER_ERROR";
-    default:
+    }
+    default: {
       return "INTERNAL_SERVER_ERROR";
+    }
   }
 }
 
@@ -161,31 +176,31 @@ export function handleZodError<T>(
   return c.json({ data: result.data });
 }
 
-export function handleError(err: Error, c: Context<HonoEnv>): Response {
+export function handleError(error: Error, c: Context<HonoEnv>): Response {
   const { logger } = c.get("services");
 
   /**
    * We can handle this very well, as it is something we threw ourselves
    */
-  if (err instanceof DonorboundApiError) {
-    if (err.status >= 500) {
+  if (error instanceof DonorboundApiError) {
+    if (error.status >= 500) {
       logger.error("returning 5XX", {
-        message: err.message,
-        name: err.name,
-        code: err.code,
-        status: err.status,
+        message: error.message,
+        name: error.name,
+        code: error.code,
+        status: error.status,
       });
     }
     return c.json<z.infer<typeof ErrorSchema>>(
       {
         error: {
-          code: err.code,
-          docs: `https://donorbound.com/docs/api-reference/errors/code/${err.code}`,
-          message: err.message,
+          code: error.code,
+          docs: `https://donorbound.com/docs/api-reference/errors/code/${error.code}`,
+          message: error.message,
           requestId: c.get("requestId"),
         },
       },
-      { status: err.status },
+      { status: error.status },
     );
   }
 
@@ -193,25 +208,25 @@ export function handleError(err: Error, c: Context<HonoEnv>): Response {
    * HTTPExceptions from hono at least give us some idea of what to do as they provide a status and
    * message
    */
-  if (err instanceof HTTPException) {
-    if (err.status >= 500) {
+  if (error instanceof HTTPException) {
+    if (error.status >= 500) {
       logger.error("HTTPException", {
-        message: err.message,
-        status: err.status,
+        message: error.message,
+        status: error.status,
         requestId: c.get("requestId"),
       });
     }
-    const code = statusToCode(err.status);
+    const code = statusToCode(error.status);
     return c.json<z.infer<typeof ErrorSchema>>(
       {
         error: {
           code,
           docs: `https://donorbound.com/docs/api-reference/errors/code/${code}`,
-          message: err.message,
+          message: error.message,
           requestId: c.get("requestId"),
         },
       },
-      { status: err.status },
+      { status: error.status },
     );
   }
 
@@ -219,10 +234,10 @@ export function handleError(err: Error, c: Context<HonoEnv>): Response {
    * We're lost here, all we can do is return a 500 and log it to investigate
    */
   logger.error("unhandled exception", {
-    name: err.name,
-    message: err.message,
-    cause: err.cause,
-    stack: err.stack,
+    name: error.name,
+    message: error.message,
+    cause: error.cause,
+    stack: error.stack,
     requestId: c.get("requestId"),
   });
   return c.json<z.infer<typeof ErrorSchema>>(
@@ -230,7 +245,7 @@ export function handleError(err: Error, c: Context<HonoEnv>): Response {
       error: {
         code: "INTERNAL_SERVER_ERROR",
         docs: "https://donorbound.com/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR",
-        message: err.message ?? "something unexpected happened",
+        message: error.message ?? "something unexpected happened",
         requestId: c.get("requestId"),
       },
     },

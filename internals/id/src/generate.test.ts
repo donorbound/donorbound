@@ -13,7 +13,7 @@ describe("ids are k-sorted by time", () => {
   const testCases = [
     {
       k: 2,
-      n: 1_000,
+      n: 1000,
     },
     {
       k: 10,
@@ -23,25 +23,29 @@ describe("ids are k-sorted by time", () => {
 
   for (const tc of testCases) {
     test(`k: ${tc.k}, n: ${tc.n}`, () => {
-      const ids = new Array(tc.n).fill(null).map((_, i) => {
-        vi.setSystemTime(new Date(i * 10));
+      const ids = Array.from({ length: tc.n })
+        .fill()
+        .map((_, index) => {
+          vi.setSystemTime(new Date(index * 10));
 
-        return newId("test");
-      });
+          return newId("donation");
+        });
       const sorted = [...ids].sort();
 
-      for (let i = 0; i < ids.length; i++) {
-        expect(Math.abs(ids.indexOf(sorted[i]) - i)).toBeLessThanOrEqual(tc.k);
+      for (let index = 0; index < ids.length; index++) {
+        expect(
+          Math.abs(ids.indexOf(sorted[index]) - index),
+        ).toBeLessThanOrEqual(tc.k);
       }
     });
   }
 });
 
 test("suffix length is between 26-28 characters long", () => {
-  for (let i = 0; i < 100_000; i++) {
-    vi.setSystemTime(new Date(randomInt(281474976710655)));
+  for (let index = 0; index < 100_000; index++) {
+    vi.setSystemTime(new Date(randomInt(281_474_976_710_655)));
 
-    const suffix = newId("test").split("_")[1];
+    const suffix = newId("donation").split("_")[1];
     expect(suffix.length).toBeGreaterThanOrEqual(26);
     expect(suffix.length).toBeLessThanOrEqual(28);
   }

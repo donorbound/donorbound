@@ -8,22 +8,22 @@ export class SchemaError extends BaseError<{ raw: unknown }> {
   public readonly retry = false;
   public readonly name = SchemaError.name;
 
-  constructor(opts: {
+  constructor(options: {
     message: string;
     context?: { raw: unknown };
     cause?: BaseError;
   }) {
     super({
-      ...opts,
+      ...options,
     });
   }
   static fromZod<T>(
-    e: ZodError<T>,
+    error: ZodError<T>,
     raw: unknown,
     context?: Record<string, unknown>,
   ): SchemaError {
     return new SchemaError({
-      message: e.message,
+      message: error.message,
       context: {
         raw: JSON.stringify(raw),
         ...context,
