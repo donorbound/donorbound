@@ -1,6 +1,7 @@
 import { randomInt } from "node:crypto";
 import { afterEach, beforeEach, describe } from "node:test";
 import { expect, test, vi } from "vitest";
+
 import { newId } from "./generate";
 
 beforeEach(() => {
@@ -9,6 +10,10 @@ beforeEach(() => {
 afterEach(() => {
   vi.useRealTimers();
 });
+
+/**
+ * Test suite for verifying that IDs are k-sorted by time.
+ */
 describe("ids are k-sorted by time", () => {
   const testCases = [
     {
@@ -22,9 +27,15 @@ describe("ids are k-sorted by time", () => {
   ];
 
   for (const tc of testCases) {
+    /**
+     * Test case for k-sorted IDs.
+     * @param {number} tc.k - The k value for sorting.
+     * @param {number} tc.n - The number of IDs to generate.
+     */
     test(`k: ${tc.k}, n: ${tc.n}`, () => {
       const ids = Array.from({ length: tc.n })
-        .fill()
+        // eslint-disable-next-line unicorn/no-null
+        .fill(null)
         .map((_, index) => {
           vi.setSystemTime(new Date(index * 10));
 
@@ -41,6 +52,9 @@ describe("ids are k-sorted by time", () => {
   }
 });
 
+/**
+ * Test to ensure the suffix length of IDs is between 26-28 characters.
+ */
 test("suffix length is between 26-28 characters long", () => {
   for (let index = 0; index < 100_000; index++) {
     vi.setSystemTime(new Date(randomInt(281_474_976_710_655)));

@@ -4,11 +4,11 @@ export default function HomePage() {
   return (
     <main
       style={{
-        flex: 1,
         display: "flex",
+        flex: 1,
         flexDirection: "column",
-        textAlign: "center",
         justifyContent: "center",
+        textAlign: "center",
       }}
     >
       <h1

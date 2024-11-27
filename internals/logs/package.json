@@ -2,6 +2,7 @@
   "name": "@donorbound/logs",
   "version": "0.0.1",
   "description": "",
+  "keywords": [],
   "exports": {
     ".": {
       "import": "./src/logs.ts",
@@ -14,14 +15,16 @@
       "types": "./src/types.ts"
     }
   },
-  "keywords": [],
-  "devDependencies": {
-    "@types/node": "^22.10.0",
-    "@donorbound/tsconfig": "workspace:*",
-    "typescript": "^5.7.2"
+  "scripts": {
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@donorbound/metrics": "workspace:^",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@donorbound/tsconfig": "workspace:*",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
   }
 }

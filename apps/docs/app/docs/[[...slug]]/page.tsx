@@ -50,7 +50,7 @@ export async function generateMetadata(properties: {
   if (!page) notFound();
 
   return metadataImage.withImage(page.slugs, {
-    title: page.data.title,
     description: page.data.description,
+    title: page.data.title,
   });
 }

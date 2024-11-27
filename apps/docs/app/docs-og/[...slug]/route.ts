@@ -3,8 +3,8 @@ import { generateOGImage } from "fumadocs-ui/og";
 
 export const GET = metadataImage.createAPI((page) => {
   return generateOGImage({
-    title: page.data.title,
     description: page.data.description,
+    title: page.data.title,
   });
 });
 
