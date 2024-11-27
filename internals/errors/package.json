@@ -1,0 +1,45 @@
+{
+  "name": "@donorbound/error",
+  "version": "0.0.1",
+  "exports": {
+    ".": {
+      "import": "./src/error-handling.ts",
+      "require": "./src/error-handling.ts",
+      "types": "./src/error-handling.ts"
+    },
+    "./base": {
+      "import": "./src/errors/base.ts",
+      "require": "./src/errors/base.ts",
+      "types": "./src/errors/base.ts"
+    },
+    "./env-error": {
+      "import": "./src/errors/env-error.ts",
+      "require": "./src/errors/env-error.ts",
+      "types": "./src/errors/env-error.ts"
+    },
+    "./fetch-error": {
+      "import": "./src/errors/fetch-error.ts",
+      "require": "./src/errors/fetch-error.ts",
+      "types": "./src/errors/fetch-error.ts"
+    },
+    "./schema-error": {
+      "import": "./src/errors/schema-error.ts",
+      "require": "./src/errors/schema-error.ts",
+      "types": "./src/errors/schema-error.ts"
+    }
+  },
+  "description": "",
+  "keywords": [],
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "@donorbound/tsconfig": "workspace:*",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
+}

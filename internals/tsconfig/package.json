@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@donorbound/tsconfig",
+  "version": "1.0.0",
+  "private": true,
+  "files": [
+    "app.json",
+    "base.json",
+    "node22.json",
+    "pkg.json",
+    "strictest.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

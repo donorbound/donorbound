@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Package Library",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "declarationMap": true,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "strict": true
+  }
+}

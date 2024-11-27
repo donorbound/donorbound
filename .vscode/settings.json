@@ -1,11 +1,13 @@
 {
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit",
-		"source.organizeImports.biome": "explicit",
-		"quickfix.biome": "explicit"
-	},
-	"editor.defaultFormatter": "biomejs.biome",
-	"[jsonc]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	}
+  "prettier.enable": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "quickfix.biome": "explicit"
+  },
+  "editor.defaultFormatter": "biomejs.biome",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }
