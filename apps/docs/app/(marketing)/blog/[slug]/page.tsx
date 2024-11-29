@@ -59,6 +59,7 @@ export default async function Page(properties: {
       <script
         type="application/ld+json"
         suppressHydrationWarning
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
@@ -119,6 +120,7 @@ export default async function Page(properties: {
         </div>
         <article
           className="prose dark:prose-invert mx-auto max-w-full"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
           dangerouslySetInnerHTML={{ __html: post.source }}
         />
       </div>
