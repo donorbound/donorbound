@@ -1,4 +1,3 @@
-import { Icons } from "@/components/icons";
 import { BorderText } from "@/components/ui/border-number";
 import { siteConfig } from "@/lib/config";
 
@@ -7,16 +6,15 @@ export function Footer() {
     <footer className="flex flex-col gap-y-5 rounded-lg px-7 py-5 container">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
-          {/* <Icons.logo className="h-5 w-5" /> */}
           <h2 className="text-lg font-bold text-foreground">
             {siteConfig.name}
           </h2>
         </div>
 
         <div className="flex gap-x-4">
-          {siteConfig.footer.socialLinks.map((link, index) => (
+          {siteConfig.footer.socialLinks.map((link) => (
             <a
-              key={index}
+              key={link.url}
               href={link.url}
               className="flex h-5 w-5 items-center justify-center text-muted-foreground transition-all duration-100 ease-linear hover:text-foreground hover:underline hover:underline-offset-4"
             >
@@ -27,9 +25,9 @@ export function Footer() {
       </div>
       <div className="flex flex-col justify-between gap-y-5 md:flex-row md:items-center">
         <ul className="flex flex-col gap-x-5 gap-y-2 text-muted-foreground md:flex-row md:items-center">
-          {siteConfig.footer.links.map((link, index) => (
+          {siteConfig.footer.links.map((link) => (
             <li
-              key={index}
+              key={link.url}
               className="text-[15px]/normal font-medium text-muted-foreground transition-all duration-100 ease-linear hover:text-foreground hover:underline hover:underline-offset-4"
             >
               <a href={link.url}>{link.text}</a>

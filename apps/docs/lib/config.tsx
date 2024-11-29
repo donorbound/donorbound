@@ -1,9 +1,4 @@
-import { IconBluesky } from "@/components/icons/bluesky";
-import { IconDiscord } from "@/components/icons/discord";
-import { IconGithub } from "@/components/icons/github";
-import { IconInstagram } from "@/components/icons/instagram";
-import { IconLinkedin } from "@/components/icons/linkedin";
-import { IconX } from "@/components/icons/x";
+import { Icons } from "@/components/icons";
 import { HeartIcon } from "@radix-ui/react-icons";
 import {
   BookOpenIcon,
@@ -62,27 +57,27 @@ export const siteConfig = {
     links: [{ text: "Docs", url: "/docs" }],
     socialLinks: [
       {
-        icon: <IconX className="h-5 w-5" />,
+        icon: <Icons.x className="h-5 w-5" />,
         url: "https://x.com/donorbound",
       },
       {
-        icon: <IconBluesky className="h-5 w-5" />,
+        icon: <Icons.bluesky className="h-5 w-5" />,
         url: "https://bsky.app/profile/donorbound.coml",
       },
       {
-        icon: <IconDiscord className="h-5 w-5" />,
+        icon: <Icons.discord className="h-5 w-5" />,
         url: "https://donorbound.com/donorbound",
       },
       {
-        icon: <IconLinkedin className="h-5 w-5" />,
+        icon: <Icons.linkedin className="h-5 w-5" />,
         url: "https://www.linkedin.com/company/donorbound",
       },
       {
-        icon: <IconInstagram className="h-5 w-5" />,
+        icon: <Icons.instagram className="h-5 w-5" />,
         url: "https://www.instagram.com/donorbound",
       },
       {
-        icon: <IconGithub className="h-5 w-5" />,
+        icon: <Icons.github className="h-5 w-5" />,
         url: "https://github.com/donorbound/donorbound",
       },
     ],

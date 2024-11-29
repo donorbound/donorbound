@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   const postTitle = searchParams.get("title") || siteConfig.description;
   const font = fetch(
     new URL("../../assets/fonts/Inter-SemiBold.ttf", import.meta.url),
-  ).then((res) => res.arrayBuffer());
+  ).then((response) => response.arrayBuffer());
   const fontData = await font;
 
   return new ImageResponse(
@@ -78,6 +78,7 @@ export async function GET(request: NextRequest) {
       </div>
 
       <img
+        alt="cube"
         src={`${siteConfig.url}/cube.png`}
         width={500}
         style={{

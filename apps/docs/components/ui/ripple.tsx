@@ -30,7 +30,10 @@ export const Ripple = memo(function Ripple({
 
         return (
           <div
-            key={index}
+            key={`ripple-${
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              index
+            }`}
             className={`absolute animate-ripple rounded-full bg-foreground/25 shadow-xl border [--i:${index}]`}
             style={
               {

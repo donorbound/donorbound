@@ -1,5 +1,4 @@
 import { Footer } from "@/components/sections/footer";
-import { Header } from "@/components/sections/header";
 
 interface MarketingLayoutProperties {
   children: React.ReactNode;

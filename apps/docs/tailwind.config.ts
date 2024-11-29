@@ -1,6 +1,8 @@
 import type { Config } from "tailwindcss";
 
+import pluginTypography from "@tailwindcss/typography";
 import { createPreset } from "fumadocs-ui/tailwind-plugin";
+import pluginAnimate from "tailwindcss-animate";
 
 const config = {
   content: [
@@ -14,7 +16,7 @@ const config = {
     "./node_modules/fumadocs-openapi/dist/**/*.js",
   ],
   darkMode: ["class"],
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [pluginAnimate, pluginTypography],
   prefix: "",
   presets: [
     createPreset({

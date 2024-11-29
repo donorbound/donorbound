@@ -32,7 +32,7 @@ const FlickeringGrid: React.FC<FlickeringGridProperties> = ({
   const [canvasSize, setCanvasSize] = useState({ height: 0, width: 0 });
 
   const memoizedColor = useMemo(() => {
-    if (typeof window === "undefined") {
+    if (typeof globalThis.window === "undefined") {
       return "rgba(0, 0, 0,";
     }
 

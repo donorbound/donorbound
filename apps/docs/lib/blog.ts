@@ -22,7 +22,7 @@ function parseFrontmatter(fileContent: string) {
   const match = frontmatterRegex.exec(fileContent);
   const frontMatterBlock = match?.[1];
   const content = fileContent.replace(frontmatterRegex, "").trim();
-  //@ts-expect-error
+  //@ts-expect-error TODO: fix this
   const frontMatterLines = frontMatterBlock.trim().split("\n");
   const metadata: Partial<Post> = {};
 
@@ -36,8 +36,10 @@ function parseFrontmatter(fileContent: string) {
   return { content, data: metadata as Post };
 }
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+function getMDXFiles(directory: string) {
+  return fs
+    .readdirSync(directory)
+    .filter((file) => path.extname(file) === ".mdx");
 }
 
 export async function markdownToHTML(markdown: string) {
@@ -77,8 +79,8 @@ export async function getPost(slug: string) {
   };
 }
 
-async function getAllPosts(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
+async function getAllPosts(directory: string) {
+  const mdxFiles = getMDXFiles(directory);
   return Promise.all(
     mdxFiles.map(async (file) => {
       const slug = path.basename(file, path.extname(file));

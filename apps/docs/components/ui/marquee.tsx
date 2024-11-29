@@ -5,7 +5,7 @@ interface MarqueeProperties {
   reverse?: boolean;
   className?: string;
   vertical?: boolean;
-  [key: string]: any;
+  [key: string]: unknown;
   pauseOnHover?: boolean;
   children?: React.ReactNode;
 }
@@ -35,7 +35,10 @@ export default function Marquee({
         .fill(0)
         .map((_, index) => (
           <div
-            key={index}
+            key={`marquee-${
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              index
+            }`}
             className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
               "[animation-direction:reverse]": reverse,
               "animate-marquee-vertical flex-col": vertical,

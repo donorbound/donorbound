@@ -8,9 +8,9 @@ const config = {
   async redirects() {
     return [
       {
-        source: "/discord",
         destination: "https://discord.gg/3NbHyKB94u",
         permanent: true, // Use true for a 308 permanent redirect
+        source: "/discord",
       },
     ];
   },

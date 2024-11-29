@@ -1,7 +1,6 @@
 import { Section } from "@/components/section";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 export function Features() {
   const services = siteConfig.features;
@@ -9,9 +8,9 @@ export function Features() {
     <Section id="features" title="Features">
       <div className="border-x border-t">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {services.map(({ description, icon: Icon, name }, index) => (
+          {services.map(({ description, icon: Icon, name }) => (
             <div
-              key={index}
+              key={name}
               className={cn(
                 "flex flex-col gap-y-2 items-center justify-center py-8 px-4 border-b transition-colors hover:bg-secondary/20",
                 "last:border-b-0",

@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Ripple } from "@/components/ui/ripple";
 import Link from "next/link";
 
-import { IconDiscord } from "../icons/discord";
-
 // const contributors = [
 //   {
 //     avatar:
@@ -69,7 +67,7 @@ export function Community() {
               asChild
             >
               <Link href="/discord">
-                <IconDiscord className="h-5 w-5" />
+                <Icons.discord className="h-5 w-5" />
                 Join our Community
               </Link>
             </Button>

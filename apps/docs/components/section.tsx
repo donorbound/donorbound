@@ -23,7 +23,6 @@ const Section = forwardRef<HTMLElement, SectionProperties>(
   ) => {
     const internalReference = useRef<HTMLElement>(null);
     const reference = forwardedReference || internalReference;
-    const sectionId = title ? title.toLowerCase().replaceAll(/\s+/g, "-") : id;
     const alignmentClass =
       align === "left"
         ? "text-left"

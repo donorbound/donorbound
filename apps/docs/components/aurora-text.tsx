@@ -22,7 +22,10 @@ export function AuroraText({
       <div className="aurora absolute inset-0 pointer-events-none mix-blend-lighten dark:mix-blend-darken">
         {[...Array(5)].map((_, index) => (
           <div
-            key={index}
+            key={`aurora-${
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              index
+            }`}
             className="aurora__item absolute w-[60vw] h-[60vw]"
             style={{
               animation: `aurora-border 6s ease-in-out infinite, aurora-${
