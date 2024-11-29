@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import { siteConfig } from "@/lib/config";
-import { cn, constructMetadata } from "@/lib/utils";
+import { constructMetadata } from "@/lib/utils";
 
 import "./globals.css";
 
@@ -31,10 +31,10 @@ export default function RootLayout({
       {...baseOptions}
       links={[
         {
-          description: "Documentation for Donorbound",
-          text: "Docs",
+          description: "Donorbound Blog",
+          text: "Blog",
           type: "main",
-          url: "/docs",
+          url: "/blog",
         },
       ]}
     >

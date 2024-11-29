@@ -2,37 +2,39 @@
 
 import { Icons } from "@/components/icons";
 import { Section } from "@/components/section";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Ripple } from "@/components/ui/ripple";
+import Link from "next/link";
 
-const contributors = [
-  {
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8fDA%3D",
-    name: "Alice Johnson",
-  },
-  {
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBvcnRyYWl0fGVufDB8fDB8fHww",
-    name: "Bob Brown",
-  },
-  {
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBvcnRyYWl0fGVufDB8fDB8fHww",
-    name: "Charlie Davis",
-  },
-  {
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHBvcnRyYWl0fGVufDB8fDB8fHww",
-    name: "Diana Evans",
-  },
-  {
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHBvcnRyYWl0fGVufDB8fDB8fHww",
-    name: "Ethan Ford",
-  },
-];
+import { IconDiscord } from "../icons/discord";
+
+// const contributors = [
+//   {
+//     avatar:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8fDA%3D",
+//     name: "Alice Johnson",
+//   },
+//   {
+//     avatar:
+//       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+//     name: "Bob Brown",
+//   },
+//   {
+//     avatar:
+//       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+//     name: "Charlie Davis",
+//   },
+//   {
+//     avatar:
+//       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+//     name: "Diana Evans",
+//   },
+//   {
+//     avatar:
+//       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHBvcnRyYWl0fGVufDB8fDB8fHww",
+//     name: "Ethan Ford",
+//   },
+// ];
 
 export function Community() {
   return (
@@ -66,20 +68,20 @@ export function Community() {
               className="flex items-center gap-2"
               asChild
             >
-              <a href="https://github.com/donorbound/donorbound">
-                <Icons.discord className="h-5 w-5" />
+              <Link href="/discord">
+                <IconDiscord className="h-5 w-5" />
                 Join our Community
-              </a>
+              </Link>
             </Button>
             <Button
               variant="secondary"
               className="flex items-center gap-2"
               asChild
             >
-              <a href="https://github.com/donorbound/donorbound">
+              <Link href="https://github.com/donorbound/donorbound">
                 <Icons.github className="h-5 w-5" />
                 Become a contributor
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

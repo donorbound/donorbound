@@ -1,4 +1,5 @@
 import { IconBluesky } from "@/components/icons/bluesky";
+import { IconDiscord } from "@/components/icons/discord";
 import { IconGithub } from "@/components/icons/github";
 import { IconInstagram } from "@/components/icons/instagram";
 import { IconLinkedin } from "@/components/icons/linkedin";
@@ -6,11 +7,9 @@ import { IconX } from "@/components/icons/x";
 import { HeartIcon } from "@radix-ui/react-icons";
 import {
   BookOpenIcon,
-  BrainIcon,
   CodeIcon,
   GlobeIcon,
   PlugIcon,
-  UsersIcon,
   ZapIcon,
 } from "lucide-react";
 
@@ -69,6 +68,10 @@ export const siteConfig = {
       {
         icon: <IconBluesky className="h-5 w-5" />,
         url: "https://bsky.app/profile/donorbound.coml",
+      },
+      {
+        icon: <IconDiscord className="h-5 w-5" />,
+        url: "https://donorbound.com/donorbound",
       },
       {
         icon: <IconLinkedin className="h-5 w-5" />,
