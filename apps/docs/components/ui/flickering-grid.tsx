@@ -32,10 +32,11 @@ const FlickeringGrid: React.FC<FlickeringGridProperties> = ({
   const [canvasSize, setCanvasSize] = useState({ height: 0, width: 0 });
 
   const memoizedColor = useMemo(() => {
+    if (typeof window === "undefined") {
+      return "rgba(0, 0, 0,";
+    }
+
     const toRGBA = (color: string) => {
-      if (typeof globalThis === "undefined") {
-        return "rgba(0, 0, 0,";
-      }
       const canvas = document.createElement("canvas");
       canvas.width = canvas.height = 1;
       const context = canvas.getContext("2d");
@@ -45,6 +46,7 @@ const FlickeringGrid: React.FC<FlickeringGridProperties> = ({
       const [r, g, b] = [...context.getImageData(0, 0, 1, 1).data];
       return `rgba(${r}, ${g}, ${b},`;
     };
+
     return toRGBA(color);
   }, [color]);
 

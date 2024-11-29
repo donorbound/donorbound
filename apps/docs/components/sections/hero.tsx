@@ -156,7 +156,7 @@ export function Hero() {
           <HeroTitles />
           <HeroCTA />
         </div>
-        {!isMobile && (
+        {/* {!isMobile && (
           <div className="relative lg:h-full lg:col-span-1">
             <Suspense>
               {showSpline && (
@@ -173,7 +173,7 @@ export function Hero() {
               )}
             </Suspense>
           </div>
-        )}
+        )} */}
       </div>
     </Section>
   );
