@@ -89,7 +89,7 @@ export const siteConfig = {
     ctaDescription: "First product launching 2024",
     description:
       "Modern, open-source tools that nonprofits actually need. Starting with Gift Aid management for UK charities, we're building independent, best-in-class solutions that solve real problems.",
-    title: "DonorBound",
+    title: "Donorbound",
   },
   keywords: [
     "Nonprofit Software",
@@ -103,7 +103,7 @@ export const siteConfig = {
     github: "https://github.com/donorbound",
     twitter: "https://x.com/donorbound",
   },
-  name: "DonorBound",
+  name: "Donorbound",
   pricing: [
     {
       cta: "Join the waitlist",
