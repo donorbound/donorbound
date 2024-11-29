@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
+
 import { siteConfig } from "@/lib/config";
 import { type ClassValue, clsx } from "clsx";
-import type { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -12,10 +13,10 @@ export function absoluteUrl(path: string) {
 }
 
 export function constructMetadata({
-  title = siteConfig.name,
   description = siteConfig.description,
   image = absoluteUrl("/og"),
-  ...props
+  title = siteConfig.name,
+  ...properties
 }: {
   title?: string;
   description?: string;
@@ -23,42 +24,42 @@ export function constructMetadata({
   [key: string]: Metadata[keyof Metadata];
 }): Metadata {
   return {
-    title: {
-      template: `%s | ${siteConfig.name}`,
-      default: siteConfig.name,
-    },
-    description: description || siteConfig.description,
-    keywords: siteConfig.keywords,
-    openGraph: {
-      title,
-      description,
-      url: siteConfig.url,
-      siteName: siteConfig.name,
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-      type: "website",
-      locale: "en_US",
-    },
-    icons: "/favicon.ico",
-    metadataBase: new URL(siteConfig.url),
     authors: [
       {
         name: siteConfig.name,
         url: siteConfig.url,
       },
     ],
-    ...props,
+    description: description || siteConfig.description,
+    icons: "/favicon.ico",
+    keywords: siteConfig.keywords,
+    metadataBase: new URL(siteConfig.url),
+    openGraph: {
+      description,
+      images: [
+        {
+          alt: title,
+          height: 630,
+          url: image,
+          width: 1200,
+        },
+      ],
+      locale: "en_US",
+      siteName: siteConfig.name,
+      title,
+      type: "website",
+      url: siteConfig.url,
+    },
+    title: {
+      default: siteConfig.name,
+      template: `%s | ${siteConfig.name}`,
+    },
+    ...properties,
   };
 }
 
 export function formatDate(date: string) {
-  const currentDate = new Date().getTime();
+  const currentDate = Date.now();
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;
   }
@@ -67,8 +68,8 @@ export function formatDate(date: string) {
   const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   const fullDate = new Date(date).toLocaleString("en-us", {
-    month: "long",
     day: "numeric",
+    month: "long",
     year: "numeric",
   });
 

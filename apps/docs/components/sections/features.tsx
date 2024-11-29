@@ -9,7 +9,7 @@ export function Features() {
     <Section id="features" title="Features">
       <div className="border-x border-t">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {services.map(({ name, description, icon: Icon }, index) => (
+          {services.map(({ description, icon: Icon, name }, index) => (
             <div
               key={index}
               className={cn(

@@ -1,28 +1,29 @@
 "use client";
 
+import type React from "react";
+
 import FlickeringGrid from "@/components/ui/flickering-grid";
 import { cn } from "@/lib/utils";
-import type React from "react";
 import { forwardRef, useRef } from "react";
 
-interface SectionProps {
+interface SectionProperties {
   id?: string;
   title?: string;
   subtitle?: string;
+  className?: string;
   description?: string;
   children?: React.ReactNode;
-  className?: string;
   align?: "left" | "center" | "right";
 }
 
-const Section = forwardRef<HTMLElement, SectionProps>(
+const Section = forwardRef<HTMLElement, SectionProperties>(
   (
-    { id, title, subtitle, description, children, className, align },
-    forwardedRef,
+    { align, children, className, description, id, subtitle, title },
+    forwardedReference,
   ) => {
-    const internalRef = useRef<HTMLElement>(null);
-    const ref = forwardedRef || internalRef;
-    const sectionId = title ? title.toLowerCase().replace(/\s+/g, "-") : id;
+    const internalReference = useRef<HTMLElement>(null);
+    const reference = forwardedReference || internalReference;
+    const sectionId = title ? title.toLowerCase().replaceAll(/\s+/g, "-") : id;
     const alignmentClass =
       align === "left"
         ? "text-left"
@@ -31,7 +32,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
           : "text-center";
 
     return (
-      <section id={id} ref={ref}>
+      <section id={id} ref={reference}>
         <div className={cn("relative mx-auto container", className)}>
           {(title || subtitle || description) && (
             <div

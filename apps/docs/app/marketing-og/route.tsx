@@ -1,12 +1,13 @@
+import type { NextRequest } from "next/server";
+
 import { Icons } from "@/components/icons";
 import { siteConfig } from "@/lib/config";
 import { ImageResponse } from "next/og";
-import type { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = req.nextUrl;
+export async function GET(request: NextRequest) {
+  const { searchParams } = request.nextUrl;
   const postTitle = searchParams.get("title") || siteConfig.description;
   const font = fetch(
     new URL("../../assets/fonts/Inter-SemiBold.ttf", import.meta.url),
@@ -16,13 +17,13 @@ export async function GET(req: NextRequest) {
   return new ImageResponse(
     <div
       style={{
-        height: "100%",
-        width: "100%",
+        alignItems: "center",
+        backgroundColor: "#fff",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        height: "100%",
         justifyContent: "center",
-        backgroundColor: "#fff",
+        width: "100%",
         // set background image if needed
         backgroundImage: `url(${siteConfig.url}/og.png)`,
         fontSize: 32,
@@ -31,45 +32,45 @@ export async function GET(req: NextRequest) {
     >
       <div
         style={{
-          position: "relative",
+          alignItems: "center",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
+          position: "relative",
           top: "125px",
         }}
       >
         <Icons.logo
           style={{
             color: "#fff",
-            width: "64px",
             height: "64px",
+            width: "64px",
           }}
         />
 
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
             alignItems: "center",
+            color: "#fff",
+            display: "flex",
             fontSize: "64px",
             fontWeight: "600",
+            justifyContent: "center",
+            letterSpacing: "-0.05em", // Added tighter tracking
             marginTop: "24px",
             textAlign: "center",
-            color: "#fff",
             width: "60%",
-            letterSpacing: "-0.05em", // Added tighter tracking
           }}
         >
           {postTitle}
         </div>
         <div
           style={{
+            color: "#fff",
             display: "flex",
             fontSize: "16px",
             fontWeight: "500",
             marginTop: "16px",
-            color: "#fff",
           }}
         >
           {siteConfig.name}
@@ -80,22 +81,22 @@ export async function GET(req: NextRequest) {
         src={`${siteConfig.url}/cube.png`}
         width={500}
         style={{
-          position: "relative",
-          bottom: -100,
           aspectRatio: "auto",
+          bottom: -100,
+          position: "relative",
         }}
       />
     </div>,
     {
-      width: 1200,
-      height: 630,
       fonts: [
         {
-          name: "Inter",
           data: fontData,
+          name: "Inter",
           style: "normal",
         },
       ],
+      height: 630,
+      width: 1200,
     },
   );
 }

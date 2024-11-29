@@ -1,20 +1,21 @@
 "use client";
 
 import type React from "react";
+
 import { useState } from "react";
 
 interface FeatureOption {
   id: number;
+  code: string;
   title: string;
   description: string;
-  code: string;
 }
 
-interface FeatureSelectorProps {
+interface FeatureSelectorProperties {
   features: FeatureOption[];
 }
 
-export const FeatureSelector: React.FC<FeatureSelectorProps> = ({
+export const FeatureSelector: React.FC<FeatureSelectorProperties> = ({
   features,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);

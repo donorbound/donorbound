@@ -1,11 +1,11 @@
 import type { SVGProps } from "react";
 
-export const IconGithub = (props: SVGProps<SVGSVGElement>) => (
+export const IconGithub = (properties: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
     aria-label="Github Icon"
-    {...props}
+    {...properties}
   >
     <title>Github Icon</title>
     <path

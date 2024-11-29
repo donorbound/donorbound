@@ -1,4 +1,5 @@
 import type { Post } from "@/lib/blog";
+
 import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";

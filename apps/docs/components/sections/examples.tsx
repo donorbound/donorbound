@@ -4,16 +4,13 @@ import { codeToHtml } from "shiki";
 
 interface FeatureOption {
   id: number;
+  code: string;
   title: string;
   description: string;
-  code: string;
 }
 
 const featureOptions: FeatureOption[] = [
   {
-    id: 1,
-    title: "Simple Agent Workflow",
-    description: "Create a basic AI agent workflow with multiple agents.",
     code: `import { Swarm, Agent } from 'ai-agent-sdk';
 
 const client = new Swarm();
@@ -42,12 +39,11 @@ const run = async () => {
 };
 
 run();`,
+    description: "Create a basic AI agent workflow with multiple agents.",
+    id: 1,
+    title: "Simple Agent Workflow",
   },
   {
-    id: 2,
-    title: "Multi-Agent Collaboration",
-    description:
-      "Set up multiple AI agents to work together on a complex task.",
     code: `import { Agent, MultiAgentSystem } from 'ai-agent-sdk';
 
 const researchAgent = new Agent('Researcher');
@@ -79,11 +75,12 @@ const runResearch = async () => {
 };
 
 runResearch();`,
+    description:
+      "Set up multiple AI agents to work together on a complex task.",
+    id: 2,
+    title: "Multi-Agent Collaboration",
   },
   {
-    id: 3,
-    title: "Tool Integration",
-    description: "Integrate external tools and APIs into an AI agent workflow.",
     code: `import { Agent, Tool } from 'ai-agent-sdk';
 import { Configuration, OpenAIApi } from 'openai';
 
@@ -125,12 +122,11 @@ const performResearch = async (topic: string) => {
 };
 
 performResearch('AI advancements in 2023');`,
+    description: "Integrate external tools and APIs into an AI agent workflow.",
+    id: 3,
+    title: "Tool Integration",
   },
   {
-    id: 4,
-    title: "Customizable Agent Behavior",
-    description:
-      "Design a specialized AI agent with custom decision-making logic.",
     code: `import { Agent, KnowledgeBase } from 'ai-agent-sdk';
 
 class CustomerSupportAgent extends Agent {
@@ -183,6 +179,10 @@ const handleCustomerQuery = async (query: string) => {
 };
 
 handleCustomerQuery("How do I reset my password?");`,
+    description:
+      "Design a specialized AI agent with custom decision-making logic.",
+    id: 4,
+    title: "Customizable Agent Behavior",
   },
 ];
 

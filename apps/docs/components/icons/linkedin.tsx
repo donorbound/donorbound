@@ -1,11 +1,11 @@
 import type { SVGProps } from "react";
 
-export const IconLinkedin = (props: SVGProps<SVGSVGElement>) => (
+export const IconLinkedin = (properties: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
     aria-label="Linkedin Icon"
-    {...props}
+    {...properties}
   >
     <title>Linkedin Icon</title>
     <path

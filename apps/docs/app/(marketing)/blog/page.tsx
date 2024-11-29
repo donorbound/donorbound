@@ -4,8 +4,8 @@ import { siteConfig } from "@/lib/config";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Blog",
   description: `Latest news and updates from ${siteConfig.name}.`,
+  title: "Blog",
 });
 
 export default async function Blog() {
@@ -29,8 +29,8 @@ export default async function Blog() {
       </div>
       <div className="min-h-[50vh] bg-white/50 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur-lg">
         <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-8 px-2.5 py-10 lg:px-20 lg:grid-cols-3">
-          {articles.map((data, idx) => (
-            <BlogCard key={data.slug} data={data} priority={idx <= 1} />
+          {articles.map((data, index) => (
+            <BlogCard key={data.slug} data={data} priority={index <= 1} />
           ))}
         </div>
       </div>

@@ -26,13 +26,13 @@ function parseFrontmatter(fileContent: string) {
   const metadata: Partial<Post> = {};
 
   for (const line of frontMatterLines) {
-    const [key, ...valueArr] = line.split(": ");
-    let value = valueArr.join(": ").trim();
+    const [key, ...valueArray] = line.split(": ");
+    let value = valueArray.join(": ").trim();
     value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
     metadata[key.trim() as keyof Post] = value;
   }
 
-  return { data: metadata as Post, content };
+  return { content, data: metadata as Post };
 }
 
 function getMDXFiles(dir: string) {
@@ -46,11 +46,11 @@ export async function markdownToHTML(markdown: string) {
     .use(remarkRehype)
     .use(rehypePrettyCode, {
       // https://rehype-pretty.pages.dev/#usage
-      theme: {
-        light: "min-light",
-        dark: "min-dark",
-      },
       keepBackground: false,
+      theme: {
+        dark: "min-dark",
+        light: "min-light",
+      },
     })
     .use(rehypeStringify)
     .process(markdown);
@@ -60,19 +60,19 @@ export async function markdownToHTML(markdown: string) {
 
 export async function getPost(slug: string) {
   const filePath = path.join("content", "blog", `${slug}.mdx`);
-  const source = fs.readFileSync(filePath, "utf-8");
+  const source = fs.readFileSync(filePath, "utf8");
   const { content: rawContent, data: metadata } = parseFrontmatter(source);
   const content = await markdownToHTML(rawContent);
   const defaultImage = `${siteConfig.url}/og?title=${encodeURIComponent(
     metadata.title,
   )}`;
   return {
-    source: content,
     metadata: {
       ...metadata,
       image: metadata.image || defaultImage,
     },
     slug,
+    source: content,
   };
 }
 

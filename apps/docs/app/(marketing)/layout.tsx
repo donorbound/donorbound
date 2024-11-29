@@ -1,9 +1,12 @@
+import type { Metadata, Viewport } from "next";
+
 import { siteConfig } from "@/lib/config";
 import { cn, constructMetadata } from "@/lib/utils";
-import type { Metadata, Viewport } from "next";
+
 import "./globals.css";
 
 import { HomeLayout } from "fumadocs-ui/layouts/home";
+
 import { baseOptions } from "../layout.config";
 
 export const metadata: Metadata = constructMetadata({
@@ -13,8 +16,8 @@ export const metadata: Metadata = constructMetadata({
 export const viewport: Viewport = {
   colorScheme: "light",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
+    { color: "white", media: "(prefers-color-scheme: light)" },
+    { color: "black", media: "(prefers-color-scheme: dark)" },
   ],
 };
 
@@ -28,9 +31,9 @@ export default function RootLayout({
       {...baseOptions}
       links={[
         {
-          type: "main",
-          text: "Docs",
           description: "Documentation for Donorbound",
+          text: "Docs",
+          type: "main",
           url: "/docs",
         },
       ]}

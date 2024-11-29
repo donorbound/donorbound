@@ -30,7 +30,7 @@ export function Testimonials() {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              transition={{ delay: index * 0.05, duration: 0.5 }}
               className={cn(
                 "flex flex-col border-b break-inside-avoid border-l",
                 "transition-colors hover:bg-secondary/20",

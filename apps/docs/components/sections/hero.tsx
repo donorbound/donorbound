@@ -63,8 +63,8 @@ function HeroTitles() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.8,
             delay: 0.5,
+            duration: 0.8,
             ease,
           }}
         >
@@ -113,7 +113,7 @@ function HeroCTA() {
         className="mt-3 text-sm text-muted-foreground text-left"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.0, duration: 0.8 }}
+        transition={{ delay: 1, duration: 0.8 }}
       >
         {siteConfig.hero.ctaDescription}
       </motion.p>
@@ -163,7 +163,7 @@ export function Hero() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 1 }}
+                  transition={{ delay: 1, duration: 0.8 }}
                 >
                   <LazySpline
                     scene="https://prod.spline.design/mZBrYNcnoESGlTUG/scene.splinecode"

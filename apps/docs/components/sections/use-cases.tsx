@@ -36,9 +36,9 @@ export function Card1() {
       },
     },
     whileHover: {
-      scale: 0.8,
       boxShadow:
         "rgba(245,40,145,0.35) 0px 20px 70px -10px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
+      scale: 0.8,
       transition: {
         delay: 0.05,
         duration: 0.2,
@@ -48,29 +48,28 @@ export function Card1() {
   };
   const variant2 = {
     initial: {
-      y: -27,
       scale: 0.95,
       transition: {
         delay: 0,
         duration: 0.2,
         ease: "linear",
       },
+      y: -27,
     },
     whileHover: {
-      y: -55,
-      scale: 0.87,
       boxShadow:
         "rgba(39,127,245,0.15) 0px 20px 70px -10px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
+      scale: 0.87,
       transition: {
         delay: 0,
         duration: 0.2,
         ease: "linear",
       },
+      y: -55,
     },
   };
   const variant3 = {
     initial: {
-      y: -25,
       opacity: 0,
       scale: 1,
       transition: {
@@ -78,18 +77,19 @@ export function Card1() {
         duration: 0.2,
         ease: "linear",
       },
+      y: -25,
     },
     whileHover: {
-      y: -45,
-      opacity: 1,
-      scale: 1,
       boxShadow:
         "rgba(39,245,76,0.15) 10px 20px 70px -20px, rgba(36,42,66,0.04) 0px 10px 24px -8px, rgba(36,42,66,0.06) 0px 1px 4px -1px",
+      opacity: 1,
+      scale: 1,
       transition: {
         delay: 0.05,
         duration: 0.2,
         ease: "easeInOut",
       },
+      y: -45,
     },
   };
 
@@ -166,59 +166,59 @@ export function Card1() {
 const Card2 = () => {
   const logs = [
     {
-      id: 1,
-      type: "info",
-      timestamp: "14:23:45",
-      message: "New donor declaration received",
       icon: (
         <div className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center">
           <UserCheckIcon className="h-5 w-5 text-white" />
         </div>
       ),
+      id: 1,
+      message: "New donor declaration received",
+      timestamp: "14:23:45",
+      type: "info",
     },
     {
-      id: 2,
-      type: "action",
-      timestamp: "14:23:47",
-      message: "Processing £100 donation...",
       icon: (
         <div className="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center">
           <CoinsIcon className="h-5 w-5 text-white" />
         </div>
       ),
+      id: 2,
+      message: "Processing £100 donation...",
+      timestamp: "14:23:47",
+      type: "action",
     },
     {
-      id: 3,
-      type: "success",
-      timestamp: "14:23:50",
-      message: "Gift Aid calculated: £25.00",
       icon: (
         <div className="h-8 w-8 rounded-full bg-purple-500 flex items-center justify-center">
           <GiftIcon className="h-5 w-5 text-white" />
         </div>
       ),
+      id: 3,
+      message: "Gift Aid calculated: £25.00",
+      timestamp: "14:23:50",
+      type: "success",
     },
     {
-      id: 4,
-      type: "email",
-      timestamp: "14:23:52",
-      message: "Thank you email sent to donor",
       icon: (
         <div className="h-8 w-8 rounded-full bg-yellow-500 flex items-center justify-center">
           <MailIcon className="h-5 w-5 text-white" />
         </div>
       ),
+      id: 4,
+      message: "Thank you email sent to donor",
+      timestamp: "14:23:52",
+      type: "email",
     },
     {
-      id: 5,
-      type: "complete",
-      timestamp: "14:23:55",
-      message: "Transaction recorded for HMRC claim",
       icon: (
         <div className="h-8 w-8 rounded-full bg-red-500 flex items-center justify-center">
           <LandmarkIcon className="h-5 w-5 text-white" />
         </div>
       ),
+      id: 5,
+      message: "Transaction recorded for HMRC claim",
+      timestamp: "14:23:55",
+      type: "complete",
     },
   ];
   return (
@@ -238,17 +238,16 @@ const Card2 = () => {
                 custom={index}
                 variants={{
                   initial: (index: number) => ({
-                    y: 0,
-                    scale: index === 4 ? 0.9 : 1,
                     opacity: 1,
+                    scale: index === 4 ? 0.9 : 1,
                     transition: {
                       delay: 0.05,
                       duration: 0.2,
                       ease: cubicBezier(0.22, 1, 0.36, 1),
                     },
+                    y: 0,
                   }),
                   whileHover: (index: number) => ({
-                    y: -85,
                     opacity: index === 4 ? 1 : 0.6,
                     scale: index === 0 ? 0.85 : index === 4 ? 1.1 : 1,
                     transition: {
@@ -256,6 +255,7 @@ const Card2 = () => {
                       duration: 0.2,
                       ease: cubicBezier(0.22, 1, 0.36, 1),
                     },
+                    y: -85,
                   }),
                 }}
               >

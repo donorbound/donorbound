@@ -1,55 +1,56 @@
+import type { Metadata } from "next";
+
 import Author from "@/components/blog-author";
 import { CTA } from "@/components/sections/cta";
 import { getPost } from "@/lib/blog";
 import { siteConfig } from "@/lib/config";
 import { formatDate } from "@/lib/utils";
-import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-export async function generateMetadata(props: {
+export async function generateMetadata(properties: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata | undefined> {
-  const params = await props.params;
-  const post = await getPost(params.slug);
+  const parameters = await properties.params;
+  const post = await getPost(parameters.slug);
   const {
-    title,
+    image,
     publishedAt: publishedTime,
     summary: description,
-    image,
+    title,
   } = post.metadata;
 
   return {
-    title,
     description,
     openGraph: {
-      title,
       description,
-      type: "article",
-      publishedTime,
-      url: `${siteConfig.url}/blog/${post.slug}`,
       images: [
         {
           url: image,
         },
       ],
+      publishedTime,
+      title,
+      type: "article",
+      url: `${siteConfig.url}/blog/${post.slug}`,
     },
+    title,
     twitter: {
       card: "summary_large_image",
-      title,
       description,
       images: [image],
+      title,
     },
   };
 }
 
-export default async function Page(props: {
+export default async function Page(properties: {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const params = await props.params;
-  const post = await getPost(params.slug);
+  const parameters = await properties.params;
+  const post = await getPost(parameters.slug);
   if (!post) {
     notFound();
   }
@@ -62,18 +63,18 @@ export default async function Page(props: {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${siteConfig.url}${post.metadata.image}`
-              : `${siteConfig.url}/blog/${post.slug}/opengraph-image`,
-            url: `${siteConfig.url}/blog/${post.slug}`,
             author: {
               "@type": "Person",
               name: siteConfig.name,
             },
+            dateModified: post.metadata.publishedAt,
+            datePublished: post.metadata.publishedAt,
+            description: post.metadata.summary,
+            headline: post.metadata.title,
+            image: post.metadata.image
+              ? `${siteConfig.url}${post.metadata.image}`
+              : `${siteConfig.url}/blog/${post.slug}/opengraph-image`,
+            url: `${siteConfig.url}/blog/${post.slug}`,
           }),
         }}
       />

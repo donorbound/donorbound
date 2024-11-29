@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+
 import { headers } from "next/headers";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -8,8 +9,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: `${protocol}://${domain}`,
       lastModified: new Date(),
+      url: `${protocol}://${domain}`,
     },
   ];
 }

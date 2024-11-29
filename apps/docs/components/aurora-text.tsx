@@ -5,8 +5,8 @@ import type React from "react";
 import { cn } from "@/lib/utils";
 
 export function AuroraText({
-  className,
   children,
+  className,
 }: {
   className?: string;
   children: React.ReactNode;
@@ -20,18 +20,18 @@ export function AuroraText({
     >
       {children}
       <div className="aurora absolute inset-0 pointer-events-none mix-blend-lighten dark:mix-blend-darken">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(5)].map((_, index) => (
           <div
-            key={i}
+            key={index}
             className="aurora__item absolute w-[60vw] h-[60vw]"
             style={{
-              backgroundColor: `hsl(var(--color-${i + 1}))`,
-              filter: "blur(1rem)",
               animation: `aurora-border 6s ease-in-out infinite, aurora-${
-                i + 1
+                index + 1
               } 12s ease-in-out infinite alternate`,
+              backgroundColor: `hsl(var(--color-${index + 1}))`,
+              filter: "blur(1rem)",
               mixBlendMode: "overlay",
-              ...getInitialPosition(i),
+              ...getInitialPosition(index),
             }}
           />
         ))}
@@ -121,8 +121,8 @@ function getInitialPosition(index: number): React.CSSProperties {
   const positions = [
     { top: "-50%" },
     { right: 0, top: 0 },
-    { left: 0, bottom: 0 },
-    { right: 0, bottom: "-50%" },
+    { bottom: 0, left: 0 },
+    { bottom: "-50%", right: 0 },
   ];
   return positions[index] || {};
 }

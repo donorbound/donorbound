@@ -1,24 +1,24 @@
 import { cn } from "@/lib/utils";
 
-export interface OrbitingCirclesProps {
-  className?: string;
-  children?: React.ReactNode;
+export interface OrbitingCirclesProperties {
+  delay?: number;
+  path?: boolean;
+  radius?: number;
   reverse?: boolean;
   duration?: number;
-  delay?: number;
-  radius?: number;
-  path?: boolean;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 export default function OrbitingCircles({
-  className,
   children,
-  reverse,
-  duration = 20,
+  className,
   delay = 10,
-  radius = 50,
+  duration = 20,
   path = true,
-}: OrbitingCirclesProps) {
+  radius = 50,
+  reverse,
+}: OrbitingCirclesProperties) {
   return (
     <>
       {path && (
@@ -40,9 +40,9 @@ export default function OrbitingCircles({
       <div
         style={
           {
+            "--delay": -delay,
             "--duration": duration,
             "--radius": radius,
-            "--delay": -delay,
           } as React.CSSProperties
         }
         className={cn(

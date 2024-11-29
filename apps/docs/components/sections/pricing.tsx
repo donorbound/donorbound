@@ -10,25 +10,25 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useState } from "react";
 
-interface TabsProps {
+interface TabsProperties {
   activeTab: string;
-  setActiveTab: (tab: "yearly" | "monthly") => void;
   className?: string;
   children: (activeTab: string) => React.ReactNode;
+  setActiveTab: (tab: "yearly" | "monthly") => void;
 }
 
-interface TabsListProps {
+interface TabsListProperties {
   children: React.ReactNode;
 }
 
-interface TabsTriggerProps {
+interface TabsTriggerProperties {
   value: string;
+  isActive: boolean;
   onClick: () => void;
   children: React.ReactNode;
-  isActive: boolean;
 }
 
-const Tabs = ({ activeTab, setActiveTab, className, children }: TabsProps) => {
+const Tabs = ({ activeTab, children, className, setActiveTab }: TabsProperties) => {
   return (
     <div
       className={cn(
@@ -41,7 +41,7 @@ const Tabs = ({ activeTab, setActiveTab, className, children }: TabsProps) => {
   );
 };
 
-const TabsList = ({ children }: TabsListProps) => {
+const TabsList = ({ children }: TabsListProperties) => {
   return (
     <div className="relative flex w-fit items-center rounded-full border p-1.5">
       {children}
@@ -50,11 +50,11 @@ const TabsList = ({ children }: TabsListProps) => {
 };
 
 const TabsTrigger = ({
-  value,
-  onClick,
   children,
   isActive,
-}: TabsTriggerProps) => {
+  onClick,
+  value,
+}: TabsTriggerProperties) => {
   return (
     <button
       onClick={onClick}
@@ -65,10 +65,10 @@ const TabsTrigger = ({
           layoutId="active-tab"
           className="absolute inset-0 rounded-full bg-accent"
           transition={{
-            duration: 0.2,
-            type: "spring",
-            stiffness: 300,
             damping: 25,
+            duration: 0.2,
+            stiffness: 300,
+            type: "spring",
             velocity: 2,
           }}
         />
@@ -86,8 +86,8 @@ const TabsTrigger = ({
 };
 
 function PricingTier({
-  tier,
   billingCycle,
+  tier,
 }: {
   tier: (typeof siteConfig.pricing)[0];
   billingCycle: "monthly" | "yearly";
@@ -118,11 +118,11 @@ function PricingTier({
             <motion.div
               key={tier.price[billingCycle]}
               initial={{
+                filter: "blur(5px)",
                 opacity: 0,
                 x: billingCycle === "yearly" ? -10 : 10,
-                filter: "blur(5px)",
               }}
-              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              animate={{ filter: "blur(0px)", opacity: 1, x: 0 }}
               transition={{
                 duration: 0.25,
                 ease: [0.4, 0, 0.2, 1],

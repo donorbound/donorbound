@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Author({
-  name,
   image,
+  imageOnly,
+  name,
   twitterUsername,
   updatedAt,
-  imageOnly,
 }: {
   name: string;
   image: string;

@@ -7,19 +7,19 @@ import Link from "next/link";
 
 const stats = [
   {
-    title: "10K+",
-    subtitle: "Stars on GitHub",
     icon: <Icons.github className="h-5 w-5" />,
+    subtitle: "Stars on GitHub",
+    title: "10K+",
   },
   {
-    title: "50K+",
-    subtitle: "Discord Members",
     icon: <Icons.discord className="h-5 w-5" />,
+    subtitle: "Discord Members",
+    title: "50K+",
   },
   {
-    title: "1M+",
-    subtitle: "Downloads",
     icon: <Icons.npm className="h-5 w-5" />,
+    subtitle: "Downloads",
+    title: "1M+",
   },
 ];
 
@@ -34,10 +34,10 @@ export function Statistics() {
         }}
       >
         <div className="grid grid-cols-1 sm:grid-cols-3">
-          {stats.map((stat, idx) => (
+          {stats.map((stat, index) => (
             <Link
               href="#"
-              key={idx}
+              key={index}
               className="flex flex-col items-center justify-center py-8 px-4 border-b sm:border-b-0 last:border-b-0 sm:border-r sm:last:border-r-0 [&:nth-child(-n+2)]:border-t-0 sm:[&:nth-child(-n+3)]:border-t-0 relative group overflow-hidden"
             >
               <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all transform translate-x-full -translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 duration-300 ease-in-out">

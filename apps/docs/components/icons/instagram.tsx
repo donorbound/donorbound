@@ -1,11 +1,11 @@
 import type { SVGProps } from "react";
 
-export const IconInstagram = (props: SVGProps<SVGSVGElement>) => (
+export const IconInstagram = (properties: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
     aria-label="Instagram Icon"
-    {...props}
+    {...properties}
   >
     <title>Instagram Icon</title>
     <path
