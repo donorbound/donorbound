@@ -1,13 +1,23 @@
 "use client";
 
+import { subscribe } from "@/app/actions/subscribe";
 import { Icons } from "@/components/icons";
 import { MobileDrawer } from "@/components/mobile-drawer";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useState } from "react";
+
+import { Input } from "../ui/input";
 
 export function Header() {
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(formData: FormData) {
+    const result = await subscribe(formData);
+    setMessage(result.message);
+  }
+
   return (
     <header className="sticky top-0 h-[var(--header-height)] z-50 p-0 bg-background/60 backdrop-blur">
       <div className="flex justify-between items-center container mx-auto p-2">
@@ -20,15 +30,24 @@ export function Header() {
           <span className="font-semibold text-lg">{siteConfig.name}</span>
         </Link>
         <div className="hidden lg:block">
-          <Link
-            href="#"
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "h-8 text-primary-foreground rounded-lg group tracking-tight font-medium",
-            )}
+          <form
+            action={handleSubmit}
+            className="flex flex-col items-center gap-4 max-w-md mx-auto"
           >
-            {siteConfig.cta}
-          </Link>
+            <Input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              className="w-full"
+            />
+            <Button type="submit" className="flex items-center gap-2">
+              Join the waitlist
+            </Button>
+            {message && (
+              <p className="text-sm text-muted-foreground">{message}</p>
+            )}
+          </form>
         </div>
         <div className="mt-2 cursor-pointer block lg:hidden">
           <MobileDrawer />

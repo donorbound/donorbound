@@ -1,14 +1,14 @@
 "use client";
 
+import { subscribe } from "@/app/actions/subscribe";
 import { AuroraText } from "@/components/aurora-text";
-import { Icons } from "@/components/icons";
 import { Section } from "@/components/section";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { lazy, Suspense, useEffect, useState } from "react";
+
+import { Input } from "../ui/input";
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -57,6 +57,13 @@ function HeroTitles() {
 }
 
 function HeroCTA() {
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(formData: FormData) {
+    const result = await subscribe(formData);
+    setMessage(result.message);
+  }
+
   return (
     <div className="relative mt-6">
       <motion.div
@@ -65,16 +72,22 @@ function HeroCTA() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.8, ease }}
       >
-        <Link
-          href="/download"
-          className={cn(
-            buttonVariants({ variant: "default" }),
-            "w-full sm:w-auto text-background flex gap-2 rounded-lg",
-          )}
+        <form
+          action={handleSubmit}
+          className="flex flex-row items-center gap-4 w-full mx-auto"
         >
-          <Icons.logo className="h-6 w-6" />
-          {siteConfig.hero.cta}
-        </Link>
+          <Input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            className="w-full"
+          />
+          <Button type="submit" className="flex items-center gap-2">
+            Join the waitlist
+          </Button>
+        </form>
+        {message && <p className="text-sm text-muted-foreground">{message}</p>}
       </motion.div>
       <motion.p
         className="mt-3 text-sm text-muted-foreground text-left"

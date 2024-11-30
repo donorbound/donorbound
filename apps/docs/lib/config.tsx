@@ -54,7 +54,10 @@ export const siteConfig = {
   footer: {
     bottomText: "All rights reserved.",
     brandText: "Donorbound",
-    links: [{ text: "Docs", url: "/docs" }],
+    links: [
+      { text: "Blog", url: "/blog" },
+      { text: "Docs", url: "/docs" },
+    ],
     socialLinks: [
       {
         icon: <Icons.x className="h-5 w-5" />,
