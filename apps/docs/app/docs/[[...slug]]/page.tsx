@@ -13,8 +13,11 @@ export default async function Page(properties: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const parameters = await properties.params;
+
+  console.log(parameters.slug);
   const page = source.getPage(parameters.slug);
 
+  console.log(page);
   if (!page) {
     notFound();
   }
