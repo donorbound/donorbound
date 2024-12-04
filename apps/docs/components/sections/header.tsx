@@ -1,12 +1,13 @@
 "use client";
 
-import { subscribe } from "@/app/actions/subscribe";
-import { Icons } from "@/components/icons";
-import { MobileDrawer } from "@/components/mobile-drawer";
-import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/config";
 import Link from "next/link";
 import { useState } from "react";
+
+import { subscribe } from "~/app/actions/subscribe";
+import { Icons } from "~/components/icons";
+import { MobileDrawer } from "~/components/mobile-drawer";
+import { Button } from "~/components/ui/button";
+import { siteConfig } from "~/lib/config";
 
 import { Input } from "../ui/input";
 

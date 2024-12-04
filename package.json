@@ -11,13 +11,14 @@
     "commit": "cz",
     "fmt": "biome check --write --unsafe . && eslint --fix .",
     "fmt:check": "biome check . && eslint .",
-    "knip": "knip --include files,dependencies"
+    "knip": "knip"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "@eslint/js": "^9.15.0",
+    "@types/node": "^22.10.1",
     "eslint": "^9.15.0",
     "eslint-config-biome": "^1.9.3",
     "eslint-plugin-perfectionist": "^4.1.2",

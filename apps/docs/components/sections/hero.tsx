@@ -1,12 +1,13 @@
 "use client";
 
-import { subscribe } from "@/app/actions/subscribe";
-import { AuroraText } from "@/components/aurora-text";
-import { Section } from "@/components/section";
-import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/config";
 import { motion } from "framer-motion";
 import { lazy, Suspense, useEffect, useState } from "react";
+
+import { subscribe } from "~/app/actions/subscribe";
+import { AuroraText } from "~/components/aurora-text";
+import { Section } from "~/components/section";
+import { Button } from "~/components/ui/button";
+import { siteConfig } from "~/lib/config";
 
 import { Input } from "../ui/input";
 

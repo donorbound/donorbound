@@ -1,3 +1,1 @@
-DATABASE_HOST=localhost 
-DATABASE_USERNAME=root
-DATABASE_PASSWORD=
+DATABASE_URL=postgres://postgres@localhost:5432/donorbound

@@ -1,5 +1,6 @@
 import type { MiddlewareHandler } from "hono";
 
+import { drizzle, schema } from "@donorbound/db";
 import { newId } from "@donorbound/id";
 import { ConsoleLogger } from "@donorbound/worker-logging";
 
@@ -47,6 +48,19 @@ export function init(): MiddlewareHandler<HonoContext> {
       requestId,
     });
 
+    const primary = drizzle(c.env.DATABASE_URL, { logger: true, schema });
+
+    // console.log("before query");
+    // const account = await primary.select().from(schema.account);
+
+    // console.log(account);
+    // console.log("after query");
+    const readonly = c.env.DATABASE_URL_READONLY
+      ? drizzle(c.env.DATABASE_URL_READONLY, { logger: true, schema })
+      : primary;
+
+    const database = { primary, readonly };
+
     const metrics: Metrics = c.env.EMIT_METRICS_LOGS
       ? new LogdrainMetrics({
           environment: c.env.ENVIRONMENT,
@@ -56,6 +70,7 @@ export function init(): MiddlewareHandler<HonoContext> {
       : new NoopMetrics();
 
     c.set("services", {
+      db: database,
       logger,
       metrics,
     });

@@ -2,6 +2,8 @@ import type { OpenAPIHono } from "@hono/zod-openapi";
 
 import { apiReference } from "@scalar/hono-api-reference";
 
+import environment from "~/environment";
+
 import type { HonoContext } from "./context";
 
 import packageJSON from "../../../package.json";
@@ -23,7 +25,7 @@ export function setupDocumentation(app: OpenAPIHono<HonoContext>) {
       },
       {
         description: "Development",
-        url: "http://localhost:7878",
+        url: `http://localhost:${environment?.PORT ?? 9999}`,
       },
     ],
     "x-speakeasy-retries": {

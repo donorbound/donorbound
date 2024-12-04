@@ -1,8 +1,9 @@
 import type { NextRequest } from "next/server";
 
-import { Icons } from "@/components/icons";
-import { siteConfig } from "@/lib/config";
 import { ImageResponse } from "next/og";
+
+import { Icons } from "~/components/icons";
+import { siteConfig } from "~/lib/config";
 
 export const runtime = "edge";
 

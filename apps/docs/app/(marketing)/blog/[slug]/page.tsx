@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 
-import Author from "@/components/blog-author";
-import { CTA } from "@/components/sections/cta";
-import { getPost } from "@/lib/blog";
-import { siteConfig } from "@/lib/config";
-import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+
+import Author from "~/components/blog-author";
+import { CTA } from "~/components/sections/cta";
+import { getPost } from "~/lib/blog";
+import { siteConfig } from "~/lib/config";
+import { formatDate } from "~/lib/utils";
 
 export async function generateMetadata(properties: {
   params: Promise<{ slug: string }>;
