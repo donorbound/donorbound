@@ -1,9 +1,9 @@
+import type { Database } from "@donorbound/db";
 import type { Logger } from "@donorbound/worker-logging/types";
 
 import type { Environment } from "~/pkgs/environment";
 
 import type { Metrics } from "../metrics/interface";
-// import type { Database } from "../db";
 
 /**
  * Represents the context for services used in the application.
@@ -14,7 +14,7 @@ import type { Metrics } from "../metrics/interface";
  */
 export type ServiceContext = {
   metrics: Metrics;
-  // db: { primary: Database; readonly: Database };
+  db: { primary: Database; readonly: Database };
   logger: Logger;
 };
 

@@ -1,3 +1,92 @@
 {
-  "$schema": "https://unpkg.com/knip@5/schema.json"
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "workspaces": {
+    "apps/api": {
+      "entry": ["src/index.ts"],
+      "project": "**/*.{js,ts}",
+      "ignoreBinaries": ["vitest"],
+      "ignoreDependencies": ["vitest"],
+      "ignore": ["vitest.*.ts"]
+    },
+    "apps/dashboard": {
+      "entry": [
+        "src/app/**/*.{ts,tsx}",
+        "next.config.ts",
+        "postcss.config.mjs",
+        "tailwind.config.ts"
+      ],
+      "project": "**/*.{ts,tsx}",
+      "ignoreDependencies": [
+        "@types/node",
+        "postcss",
+        "autoprefixer",
+        "typescript"
+      ]
+    },
+    "apps/docs": {
+      "entry": [
+        "app/**/*.{ts,tsx}",
+        "next.config.mjs",
+        "postcss.config.mjs",
+        "tailwind.config.ts"
+      ],
+      "project": "**/*.{ts,tsx}",
+      "ignoreDependencies": [
+        "@types/node",
+        "postcss",
+        "autoprefixer",
+        "typescript"
+      ]
+    },
+    "internals/db": {
+      "entry": ["src/index.ts", "drizzle.config.ts"],
+      "project": "**/*.ts"
+    },
+    "internals/errors": {
+      "entry": ["src/index.ts"],
+      "project": "**/*.ts"
+    },
+    "internals/id": {
+      "entry": ["src/generate.ts"],
+      "project": "**/*.ts",
+      "ignoreDependencies": ["vitest"]
+    },
+    "internals/logs": {
+      "entry": ["src/index.ts"],
+      "project": "**/*.ts"
+    },
+    "internals/metrics": {
+      "entry": ["src/metrics.ts"],
+      "project": "**/*.ts"
+    },
+    "internals/worker-logging": {
+      "entry": ["src/index.ts"],
+      "project": "**/*.ts"
+    }
+  },
+  "ignore": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/*.d.ts",
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/dist/**",
+    "**/.turbo/**"
+  ],
+  "ignoreDependencies": [
+    // Build and development tools
+    "typescript",
+    "@types/*",
+    "tsup",
+    "turbo",
+    "lefthook",
+    // Testing frameworks
+    "vitest",
+    "@vitest/*",
+    // Linting and formatting
+    "eslint",
+    "@typescript-eslint/*",
+    "prettier",
+    "@biomejs/biome"
+  ]
 }

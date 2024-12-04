@@ -1,0 +1,33 @@
+{
+  "name": "@donorbound/db",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "vitest run -c ./vitest.config.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
+    "better-auth": "^1.0.9",
+    "dotenv": "^16.4.6",
+    "drizzle-orm": "^0.37.0",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@donorbound/tsconfig": "workspace:*",
+    "@types/node": "^22.10.1",
+    "@types/pg": "^8.11.10",
+    "drizzle-kit": "^0.29.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

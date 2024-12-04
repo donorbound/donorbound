@@ -9,17 +9,18 @@ type DiscriminateMetric<T, M = Metric> = M extends { metric: T } ? M : never;
  * Middleware to collect and emit metrics for HTTP requests.
  * @returns {MiddlewareHandler<HonoContext>} The middleware handler function.
  */
+
 export function metrics(): MiddlewareHandler<HonoContext> {
   return async (c, next) => {
     const { metrics } = c.get("services");
 
     const start = performance.now();
     const m = {
-      city: c.req.raw?.cf?.city,
-      colo: c.req.raw?.cf?.colo,
+      // city: c.req.raw?.cf?.city,
+      // colo: c.req.raw?.cf?.colo,
       context: {},
-      continent: c.req.raw?.cf?.continent,
-      country: c.req.raw?.cf?.country,
+      // continent: c.req.raw?.cf?.continent,
+      // country: c.req.raw?.cf?.country,
       fromAgent: c.req.header("Donorbound-Redirect"),
       host: new URL(c.req.url).host,
       isolateId: c.get("isolateId"),
@@ -50,7 +51,16 @@ export function metrics(): MiddlewareHandler<HonoContext> {
       );
       c.res.headers.append("Donorbound-Version", c.env.VERSION);
       metrics.emit(m);
-      c.executionCtx.waitUntil(metrics.flush());
+
+      // Check if executionCtx is available before using it
+      // if (c.executionCtx) {
+      //   c.executionCtx.waitUntil(metrics.flush());
+      // } else {
+      //   console.warn("ExecutionContext is not available.");
+      //   // Optionally, handle the absence of executionCtx here
+      //   // For example, you might want to flush metrics immediately
+      //   await metrics.flush();
+      // }
 
       const responseHeaders: Array<string> = [];
       c.res.headers.forEach((v, k) => {

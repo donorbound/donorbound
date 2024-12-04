@@ -1,6 +1,6 @@
-import { Section } from "@/components/section";
-import { siteConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
+import { Section } from "~/components/section";
+import { siteConfig } from "~/lib/config";
+import { cn } from "~/lib/utils";
 
 export function Features() {
   const services = siteConfig.features;

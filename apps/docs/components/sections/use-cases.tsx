@@ -1,7 +1,5 @@
 "use client";
 
-import { Section } from "@/components/section";
-import OrbitingCircles from "@/components/ui/orbiting-circles";
 import { cubicBezier, motion } from "framer-motion";
 import {
   CoinsIcon,
@@ -15,6 +13,9 @@ import {
   ReceiptIcon,
   UserCheckIcon,
 } from "lucide-react";
+
+import { Section } from "~/components/section";
+import OrbitingCircles from "~/components/ui/orbiting-circles";
 
 const containerVariants = {
   initial: {},

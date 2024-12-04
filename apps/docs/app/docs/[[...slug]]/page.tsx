@@ -1,5 +1,3 @@
-import { metadataImage } from "@/lib/metadata";
-import { openapi, source } from "@/lib/source";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import {
   DocsBody,
@@ -8,6 +6,9 @@ import {
   DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
+
+import { metadataImage } from "~/lib/metadata";
+import { openapi, source } from "~/lib/source";
 
 export default async function Page(properties: {
   params: Promise<{ slug?: string[] }>;

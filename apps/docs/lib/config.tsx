@@ -1,4 +1,3 @@
-import { Icons } from "@/components/icons";
 import { HeartIcon } from "@radix-ui/react-icons";
 import {
   BookOpenIcon,
@@ -7,6 +6,8 @@ import {
   PlugIcon,
   ZapIcon,
 } from "lucide-react";
+
+import { Icons } from "~/components/icons";
 
 export const BLUR_FADE_DELAY = 0.15;
 

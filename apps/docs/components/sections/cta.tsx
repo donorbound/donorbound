@@ -1,9 +1,10 @@
 "use client";
 
-import { subscribe } from "@/app/actions/subscribe";
-import { Section } from "@/components/section";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+
+import { subscribe } from "~/app/actions/subscribe";
+import { Section } from "~/components/section";
+import { Button } from "~/components/ui/button";
 
 import { Input } from "../ui/input";
 

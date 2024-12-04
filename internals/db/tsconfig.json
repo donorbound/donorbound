@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@donorbound/tsconfig/base.json",
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "skipLibCheck": true
+  }
+}

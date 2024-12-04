@@ -1,5 +1,6 @@
-import { cn } from "@/lib/utils";
 import { type CSSProperties, memo } from "react";
+
+import { cn } from "~/lib/utils";
 
 interface RippleProperties {
   className?: string;

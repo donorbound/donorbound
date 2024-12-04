@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
 
-import { siteConfig } from "@/lib/config";
-import { constructMetadata } from "@/lib/utils";
+import { HomeLayout } from "fumadocs-ui/layouts/home";
+
+import { siteConfig } from "~/lib/config";
 
 import "./globals.css";
 
-import { HomeLayout } from "fumadocs-ui/layouts/home";
+import { constructMetadata } from "~/lib/utils";
 
 import { baseOptions } from "../layout.config";
 

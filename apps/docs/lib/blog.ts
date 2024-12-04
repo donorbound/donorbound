@@ -1,4 +1,3 @@
-import { siteConfig } from "@/lib/config";
 import fs from "node:fs";
 import path from "node:path";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -7,6 +6,8 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+
+import { siteConfig } from "~/lib/config";
 
 export type Post = {
   title: string;

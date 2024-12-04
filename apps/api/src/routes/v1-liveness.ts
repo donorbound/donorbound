@@ -1,5 +1,7 @@
+// import { Pool, schema, sql } from "@donorbound/db";
 import { createRoute, z } from "@hono/zod-openapi";
 
+// import pg from "pg";
 import type { App } from "~/pkgs/hono/create-hono-app";
 
 import { openApiErrorResponses } from "~/pkgs/errors/openapi-responses";
@@ -53,11 +55,12 @@ export type V1LivenessResponse = z.infer<
  */
 export const registerV1Liveness = (app: App) =>
   app.openapi(route, async (c) => {
-    const { logger, metrics } = c.get("services");
+    const { db, logger, metrics } = c.get("services");
 
     return c.json(
       {
         services: {
+          db: db.primary.constructor.name,
           logger: logger.constructor.name,
           metrics: metrics.constructor.name,
         },

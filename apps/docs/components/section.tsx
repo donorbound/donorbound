@@ -2,9 +2,10 @@
 
 import type React from "react";
 
-import FlickeringGrid from "@/components/ui/flickering-grid";
-import { cn } from "@/lib/utils";
 import { forwardRef, useRef } from "react";
+
+import FlickeringGrid from "~/components/ui/flickering-grid";
+import { cn } from "~/lib/utils";
 
 interface SectionProperties {
   id?: string;
