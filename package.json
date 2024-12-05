@@ -17,7 +17,7 @@
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
-    "@eslint/js": "^9.15.0",
+    "@eslint/js": "^9.16.0",
     "eslint": "^9.15.0",
     "eslint-config-biome": "^1.9.3",
     "eslint-plugin-perfectionist": "^4.1.2",
